@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "jsx": "react",
+    "paths": {
+      "@components": ["components/index"],
+      "@pages": ["pages/index"],
+      "@consts": ["consts/index"],
+      "@hooks": ["hooks/index"],
+      "@styles": ["styles/index"],
+      "@utils": ["utils/index"],
+      "@icons": ["icons/index"]
+    }
+  }
+}
