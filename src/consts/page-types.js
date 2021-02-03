@@ -1,0 +1,3 @@
+export const FOR_ALL = "FOR_ALL";
+export const ONLY_FOR_LOGGED_IN = "ONLY_FOR_LOGGED_IN";
+export const ONLY_FOR_UNLOGGED_IN = "ONLY_FOR_UNLOGGED_IN";

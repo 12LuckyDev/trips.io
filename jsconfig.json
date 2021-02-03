@@ -9,7 +9,9 @@
       "@hooks": ["hooks/index"],
       "@styles": ["styles/index"],
       "@utils": ["utils/index"],
-      "@icons": ["icons/index"]
+      "@icons": ["icons/index"],
+      "@services": ["services/index"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
