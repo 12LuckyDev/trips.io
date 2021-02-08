@@ -1,5 +1,8 @@
 const aliases = (prefix = "./src/") => ({
   "@components": `${prefix}components`,
+  "@custom-components": `${prefix}components/custom`,
+  "@fancy-components": `${prefix}components/fancy`,
+  "@components": `${prefix}components`,
   "@pages": `${prefix}pages`,
   "@consts": `${prefix}consts`,
   "@hooks": `${prefix}hooks`,

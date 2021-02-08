@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@bit/luckydev.react-fancy.fancy-button": "^1.0.0",
-    "@bit/luckydev.react-fancy.fancy-input": "^1.1.0",
+    "@12luckydev/utils": "^1.3.1",
+    "@bit/luckydev.react-custom.custom-button": "^0.0.2",
+    "@bit/luckydev.react-custom.custom-input": "^0.0.1",
     "@craco/craco": "^6.1.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",

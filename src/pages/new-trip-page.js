@@ -1,32 +1,16 @@
-import React, { useState } from "react";
-import { FancyForm, FancyInput } from "@components";
-import { firestore } from "@services";
+import React from "react";
 import { PATHS } from "@consts";
 import { useHistory } from "react-router-dom";
+import { TripFrom } from "@components";
 
 const NewTripPage = () => {
-  const [title, setTitle] = useState("");
-  const [text, setText] = useState("");
   const history = useHistory();
 
-  const onSubmit = () => {
-    firestore
-      .collection("trips")
-      .add({
-        title,
-        text,
-      })
-      .then(() => {
-        history.push(PATHS.TRIPS);
-      });
+  const onSuccess = () => {
+    history.push(PATHS.TRIPS);
   };
 
-  return (
-    <FancyForm onSubmit={onSubmit}>
-      <FancyInput name="title" value={title} onChange={setTitle} />
-      <FancyInput name="text" value={text} onChange={setText} />
-    </FancyForm>
-  );
+  return <TripFrom onSuccess={onSuccess} />;
 };
 
 export default NewTripPage;

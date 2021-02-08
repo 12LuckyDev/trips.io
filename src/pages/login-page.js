@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FancyInput, FancyButton, FancyForm } from "@components";
+import { FancyInput, FancyForm } from "@components";
 import { auth } from "@services";
 
 const LoginPage = () => {
