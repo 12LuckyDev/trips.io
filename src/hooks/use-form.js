@@ -1,11 +1,11 @@
 import { useReducer, useCallback } from "react";
 import { isObject } from "@12luckydev/utils";
-
+import { FORM_ACTIONS } from "@consts";
 /**
  * TODO:
  * - inputsPropsType (ARRAY, OBJECT (name is key))
  * - map array to object (in utils)
- * - move types to const
+ * - isFunc in utils
  */
 
 const getInitialState = (formConfig) => {
@@ -17,7 +17,7 @@ const getInitialState = (formConfig) => {
 const formReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case "VALUE_CHANGE":
+    case FORM_ACTIONS.VALUE_CHANGE:
       const { name, value } = payload;
       return {
         ...state,
@@ -41,8 +41,10 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     initialState || getInitialState(formConfig)
   );
 
-  const onChange = useCallback((value, name) =>
-    dispatch({ type: "VALUE_CHANGE", payload: { value, name } }), []
+  const onChange = useCallback(
+    (value, name) =>
+      dispatch({ type: FORM_ACTIONS.VALUE_CHANGE, payload: { value, name } }),
+    []
   );
 
   const inputsProps = formConfig.map(({ name, type, labelText }) => ({

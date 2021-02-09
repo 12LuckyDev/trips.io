@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { px2vw } from "@utils";
 
 export const Global = createGlobalStyle`
   * {
@@ -7,17 +6,21 @@ export const Global = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
   :root {
-      font-size: ${px2vw(24)};
+    font-size: 62.5%;
 
-      @media (min-width: 768px) {
-        font-size: ${px2vw(18)};
-      }
-
-      @media (min-width: 1024px) {
-        font-size: ${px2vw(16)};
-      }
+    @media (min-width: 768px) {
     }
+
+    @media (min-width: 1024px) {
+    }
+  }
+
+  body {
+    font-size: 14px;
+    font-size: 1.6rem;
+  }
 `;
 
 export default Global;

@@ -1,11 +1,12 @@
 import React from "react";
-import { FancyForm, FancyInput } from "@components";
+import { FancyForm, FancyFormField, FancyList } from "@components";
 import { firestore } from "@services";
 import { useForm } from "@hooks";
+import { FIELD_TYPES } from "@consts";
 
 const formConfig = [
-  { name: "title", type: "TEXT", labelText: "Trip title" },
-  { name: "text", type: "TEXT", labelText: "Trip description" },
+  { name: "title", type: FIELD_TYPES.TEXT, labelText: "Trip title" },
+  { name: "text", type: FIELD_TYPES.TEXT, labelText: "Trip description" },
 ];
 
 const TripFrom = ({ onSuccess }) => {
@@ -17,9 +18,7 @@ const TripFrom = ({ onSuccess }) => {
 
   return (
     <FancyForm onSubmit={onSubmit}>
-      {inputsProps.map((props) => (
-        <FancyInput {...props} />
-      ))}
+      <FancyList keyField="key" data={inputsProps} component={FancyFormField} />
     </FancyForm>
   );
 };
