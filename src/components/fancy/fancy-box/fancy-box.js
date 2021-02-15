@@ -18,8 +18,8 @@ const FancyBox = styled.div`
   }
 
   @media (min-width: 1024px) {
-    width: ${px2vw(500)};
-    min-height: ${px2vw(300)};
+    width: ${px2vw(320)};
+    min-height: ${px2vw(320)};
     height: 100%;
   }
 `;

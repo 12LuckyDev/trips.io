@@ -20,6 +20,8 @@ export const Global = createGlobalStyle`
   body {
     font-size: 14px;
     font-size: 1.6rem;
+    background: ${({ theme }) => theme.colors.backgroud};
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;
 

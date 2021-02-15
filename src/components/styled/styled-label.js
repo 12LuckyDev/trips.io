@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const StyledLabel = styled.label`
-  color: gray;
+  width: 100%;
 `;
 
 export default StyledLabel;
