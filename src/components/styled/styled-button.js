@@ -5,7 +5,7 @@ const StyledButton = styled.button`
   appearance: none;
   width: 20rem;
   max-width: 100%;
-  height: 3rem;
+  padding: 0.75rem 2rem;
   outline: none;
   border: 3px solid;
   border-radius: 1.5rem;

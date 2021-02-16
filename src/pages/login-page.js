@@ -15,7 +15,6 @@ const LoginPage = () => {
   };
 
   const onSubmitHandler = () => {
-    console.log(email, password);
     auth
       .signInWithEmailAndPassword(email, password)
       .then((user) => {

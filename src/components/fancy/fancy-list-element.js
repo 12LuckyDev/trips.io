@@ -20,7 +20,6 @@ const FancyListElement = ({
       globalOnChange(index, model);
     };
   }
-
   return <Component {...componentProps} />;
 };
 

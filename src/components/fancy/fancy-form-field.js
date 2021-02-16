@@ -1,13 +1,21 @@
 import React from "react";
-import { FancyInput } from "@fancy-components";
+import { FancyInput, FancyList } from "@fancy-components";
 import { FormRow } from "@styled-components";
+import { FIELD_TYPES } from "@consts";
 
-const FancyFormField = ({ ...fieldProps }) => {
-  return (
-    <FormRow>
-      <FancyInput {...fieldProps} />
-    </FormRow>
-  );
+const renderComponent = (type, fieldProps) => {
+  switch (type) {
+    case FIELD_TYPES.ARRAY:
+      return <FancyList {...fieldProps} />;
+    case FIELD_TYPES.TEXT:
+      return <FancyInput {...fieldProps} />;
+    default:
+      return null;
+  }
+};
+
+const FancyFormField = ({ type, ...fieldProps }) => {
+  return <FormRow>{renderComponent(type, fieldProps)}</FormRow>;
 };
 
 export default FancyFormField;

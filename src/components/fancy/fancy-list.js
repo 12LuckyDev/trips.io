@@ -1,5 +1,5 @@
 import React from "react";
-import { FancyListElement } from "@fancy-components";
+import { FancyListElement, FancyButton } from "@fancy-components";
 import { isObject } from "@12luckydev/utils";
 
 const modelHandler = (model, keyField, index) => {
@@ -23,18 +23,24 @@ const FancyList = ({
   modelPropName,
   component: Component,
   onChange: globalOnChange,
+  onAdd,
   data = [],
   keyField,
 }) => {
-  return data.map((model, index) => (
-    <FancyListElement
-      index={index}
-      component={Component}
-      modelPropName={modelPropName}
-      globalOnChange={globalOnChange}
-      {...modelHandler(model, keyField, index)}
-    />
-  ));
+  return (
+    <>
+      {data.map((model, index) => (
+        <FancyListElement
+          index={index}
+          component={Component}
+          modelPropName={modelPropName}
+          globalOnChange={globalOnChange}
+          {...modelHandler(model, keyField, index)}
+        />
+      ))}
+      {onAdd && <FancyButton text="ADD" onClick={onAdd} />}
+    </>
+  );
 };
 
 export default FancyList;
