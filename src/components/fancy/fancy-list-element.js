@@ -16,8 +16,8 @@ const FancyListElement = ({
     (!modelIsObject || typeof model.onChange !== "function") &&
     typeof globalOnChange === "function"
   ) {
-    componentProps.onChange = () => {
-      globalOnChange(index, model);
+    componentProps.onChange = (newModel) => {
+      globalOnChange(newModel, index);
     };
   }
   return <Component {...componentProps} />;

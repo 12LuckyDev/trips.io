@@ -1,5 +1,5 @@
 import { useReducer, useCallback } from "react";
-import { isObject, add } from "@12luckydev/utils";
+import { isObject, add, editAt } from "@12luckydev/utils";
 import { FORM_ACTIONS } from "@consts";
 import { FIELD_TYPES } from "@consts";
 
@@ -33,10 +33,18 @@ const formReducer = (state, action) => {
         [payload.name]: payload.value,
       };
     case FORM_ACTIONS.ARRAY_VALUE_ADD:
-      const arrayValue = state[payload.name];
       return {
         ...state,
-        [payload.name]: add(arrayValue, payload.value),
+        [payload.name]: add(state[payload.name], payload.value),
+      };
+    case FORM_ACTIONS.ARRAY_VALUE_CHANGE:
+      return {
+        ...state,
+        [payload.name]: editAt(
+          state[payload.name],
+          payload.value,
+          payload.index
+        ),
       };
     default:
       if (!type && isObject(payload)) {
@@ -62,7 +70,6 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     []
   );
 
-  //this dont know what value it will be
   const onAddToArray = useCallback(
     (value, name) =>
       dispatch({
@@ -72,16 +79,27 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     []
   );
 
+  const onEditArrayValue = useCallback(
+    (value, name, index) =>
+      dispatch({
+        type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
+        payload: { value, name, index },
+      }),
+    []
+  );
+
   const inputsProps = formConfig.map(
-    ({ name, type, labelText, component, getNew }) => {
+    ({ name, type, labelText, component, getNew, modelPropName }) => {
       if (type === FIELD_TYPES.ARRAY) {
         return {
           name,
           type,
           key: name,
           component,
+          modelPropName,
           data: state[name],
           onAdd: () => onAddToArray(getNew(), name),
+          onChange: (value, index) => onEditArrayValue(value, name, index),
         };
       }
 
