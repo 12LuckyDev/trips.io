@@ -4,7 +4,6 @@ import { FancyButton } from "@fancy-components";
 const SectionSubform = ({ onChange, model }) => {
   const onChangeHandler = () => {
     if (typeof onChange === "function") {
-      console.log(model);
       onChange({ ...model, day: model.day + 1 });
     }
   };

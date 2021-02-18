@@ -15,6 +15,14 @@ const formConfig = [
     modelPropName: "model",
     getNew: () => ({ day: 1 }),
   },
+  {
+    name: "test",
+    type: FIELD_TYPES.SELECT,
+    data: [
+      { id: "DAY", name: "Day" },
+      { id: "INFO", name: "Info" },
+    ],
+  },
 ];
 
 const TripFrom = ({ onSuccess }) => {

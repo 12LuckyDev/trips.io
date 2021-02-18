@@ -89,25 +89,47 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
   );
 
   const inputsProps = formConfig.map(
-    ({ name, type, labelText, component, getNew, modelPropName }) => {
-      if (type === FIELD_TYPES.ARRAY) {
-        return {
-          name,
-          type,
-          key: name,
-          component,
-          modelPropName,
-          data: state[name],
-          onAdd: () => onAddToArray(getNew(), name),
-          onChange: (value, index) => onEditArrayValue(value, name, index),
-        };
+    ({
+      name,
+      type,
+      labelText,
+      component,
+      getNew,
+      modelPropName,
+      data = [],
+      idKey,
+      nameKey,
+    }) => {
+      const defaultProps = {
+        name,
+        type,
+        key: name,
+      };
+
+      let customProps = null;
+
+      switch (type) {
+        case FIELD_TYPES.ARRAY:
+          return {
+            ...defaultProps,
+            data: state[name],
+            component,
+            modelPropName,
+            onAdd: () => onAddToArray(getNew(), name),
+            onChange: (value, index) => onEditArrayValue(value, name, index),
+          };
+        case FIELD_TYPES.SELECT:
+          customProps = {
+            data,
+            idKey,
+            nameKey,
+          };
       }
 
       return {
-        name,
-        type,
+        ...defaultProps,
+        ...customProps,
         onChange,
-        key: name,
         value: state[name],
         labelText,
       };

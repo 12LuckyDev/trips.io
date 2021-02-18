@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@12luckydev/utils": "^1.3.3",
-    "@bit/luckydev.react-custom.custom-button": "^0.0.2",
+    "@bit/luckydev.react-custom.custom-button": "^0.0.3",
     "@bit/luckydev.react-custom.custom-input": "^0.0.2",
     "@craco/craco": "^6.1.0",
     "@testing-library/jest-dom": "^5.11.4",

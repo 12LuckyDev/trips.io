@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { colorMix } from "@utils";
 
 const StyledButton = styled.button`
@@ -15,6 +15,13 @@ const StyledButton = styled.button`
   border-color: ${({ theme }) => theme.colors.primary};
 
   transition: background-color 0.4s ease;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: ${({ theme }) => theme.colors.primary};
+      color: ${({ theme }) => theme.colors.secondary};
+    `}
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
