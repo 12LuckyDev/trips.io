@@ -1,4 +1,5 @@
 import React from "react";
+import { isFunc } from "@12luckydev/utils";
 
 const CustomForm = ({
   children,
@@ -8,7 +9,7 @@ const CustomForm = ({
 }) => {
   const onSubmitHandler = (e) => {
     e.preventDefault();
-    if (typeof onSubmit === "function") {
+    if (isFunc(onSubmit)) {
       onSubmit();
     }
   };

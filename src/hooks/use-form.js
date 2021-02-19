@@ -7,7 +7,6 @@ import { FIELD_TYPES } from "@consts";
  * TODO:
  * - inputsPropsType (ARRAY, OBJECT (name is key))
  * - map array to object (in utils)
- * - isFunc in utils
  */
 
 const getInitialState = (formConfig) => {

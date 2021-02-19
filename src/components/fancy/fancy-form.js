@@ -6,7 +6,7 @@ import { StyledForm } from "@styled-components";
 const FancyForm = ({ children, onSubmit, submitText }) => (
   <CustomForm component={StyledForm} onSubmit={onSubmit}>
     {children}
-    {typeof onSubmit === "function" && (
+    {isFunc(onSubmit) && (
       <FancyButton text={submitText || "SUBMIT"} type="submit" />
     )}
   </CustomForm>

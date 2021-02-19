@@ -1,6 +1,7 @@
 import React from "react";
 import { Row } from "@styled-components";
 import { FancyButton } from "@fancy-components";
+import { isFunc } from "@12luckydev/utils";
 
 const FancyButtonsGroupRow = ({
   data = [],
@@ -11,7 +12,7 @@ const FancyButtonsGroupRow = ({
   name: groupName,
 }) => {
   const onChangeHandler = (value) => {
-    if (typeof onChange === "function") {
+    if (isFunc(onChange)) {
       onChange(value, groupName);
     }
   };

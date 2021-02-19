@@ -1,4 +1,5 @@
 import React from "react";
+import { isFunc } from "@12luckydev/utils";
 
 const FancyListElement = ({
   model,
@@ -12,10 +13,7 @@ const FancyListElement = ({
     ? { [modelPropName]: model }
     : { ...model };
 
-  if (
-    (!modelIsObject || typeof model.onChange !== "function") &&
-    typeof globalOnChange === "function"
-  ) {
+  if ((!modelIsObject || !isFunc(model.onChange)) && isFunc(globalOnChange)) {
     componentProps.onChange = (newModel) => {
       globalOnChange(newModel, index);
     };
