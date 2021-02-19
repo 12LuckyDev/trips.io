@@ -13,15 +13,7 @@ const formConfig = [
     type: FIELD_TYPES.ARRAY,
     component: SectionSubform,
     modelPropName: "model",
-    getNew: () => ({ day: 1 }),
-  },
-  {
-    name: "test",
-    type: FIELD_TYPES.SELECT,
-    data: [
-      { id: "DAY", name: "Day" },
-      { id: "INFO", name: "Info" },
-    ],
+    getNew: () => ({ sectionType: null, dayFormType: null }),
   },
 ];
 

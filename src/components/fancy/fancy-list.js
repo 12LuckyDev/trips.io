@@ -1,5 +1,6 @@
 import React from "react";
 import { FancyListElement, FancyButton } from "@fancy-components";
+import { Column } from "@styled-components";
 import { isObject } from "@12luckydev/utils";
 
 const modelHandler = (model, keyField, index) => {
@@ -28,7 +29,7 @@ const FancyList = ({
   keyField,
 }) => {
   return (
-    <>
+    <Column>
       {data.map((model, index) => (
         <FancyListElement
           index={index}
@@ -39,7 +40,7 @@ const FancyList = ({
         />
       ))}
       {onAdd && <FancyButton text="ADD" onClick={onAdd} />}
-    </>
+    </Column>
   );
 };
 

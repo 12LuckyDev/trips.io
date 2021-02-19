@@ -1,20 +1,29 @@
 import React from "react";
-import { FancyButton } from "@fancy-components";
 import { isFunc } from "@12luckydev/utils";
+import { FancyFormField } from "@fancy-components";
+import { Column } from "@styled-components";
+import { SECTION_TYPES, FIELD_TYPES } from "@consts";
+import DaySubform from "./day-subform";
+import { getFieldProps } from "@utils";
 
-// TODO subform hook?
 const SectionSubform = ({ onChange, model }) => {
-  const onChangeHandler = () => {
+  const onChangeHandler = (value, name) => {
     if (isFunc(onChange)) {
-      onChange({ ...model, day: model.day + 1 });
+      onChange({ ...model, [name]: value });
     }
   };
 
+  const commonProsp = { onChange: onChangeHandler, model };
+
   return (
-    <section>
-      day: {model.day}
-      <FancyButton text="Edit test" onClick={onChangeHandler} />
-    </section>
+    <Column>
+      <FancyFormField
+        type={FIELD_TYPES.SELECT}
+        data={SECTION_TYPES}
+        {...getFieldProps("sectionType", commonProsp)}
+      />
+      {model.sectionType === "DAY" && <DaySubform {...commonProsp} />}
+    </Column>
   );
 };
 
