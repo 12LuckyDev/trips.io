@@ -1,7 +1,6 @@
 import { useReducer, useCallback } from "react";
-import { isObject, add, editAt } from "@12luckydev/utils";
-import { FORM_ACTIONS } from "@consts";
-import { FIELD_TYPES } from "@consts";
+import { isObject, add, editAt, isFunc, isArray } from "@12luckydev/utils";
+import { FORM_ACTIONS, FIELD_TYPES } from "@consts";
 
 /**
  * TODO:
@@ -79,12 +78,34 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
   );
 
   const onEditArrayValue = useCallback(
-    (value, name, index) =>
-      dispatch({
-        type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
-        payload: { value, name, index },
-      }),
-    []
+    (value, name, index) => {
+      const config = formConfig.find((x) => x.name === name);
+      if (isFunc(config.changeHandler)) {
+        const oldArrayValue = state[name];
+        const oldValue = oldArrayValue[index];
+        const newArrayValue = editAt(oldArrayValue, value, index);
+        const handledArrayValue = config.changeHandler(newArrayValue, {
+          value,
+          index,
+          oldValue,
+        });
+        dispatch({
+          type: FORM_ACTIONS.VALUE_CHANGE,
+          payload: {
+            value: isArray(handledArrayValue)
+              ? handledArrayValue
+              : newArrayValue,
+            name,
+          },
+        });
+      } else {
+        dispatch({
+          type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
+          payload: { value, name, index },
+        });
+      }
+    },
+    [state, formConfig]
   );
 
   const inputsProps = formConfig.map(
@@ -123,6 +144,10 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
             idKey,
             nameKey,
           };
+          break;
+        default:
+          customProps = null;
+          break;
       }
 
       return {
