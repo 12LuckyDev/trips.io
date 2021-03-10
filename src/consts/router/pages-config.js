@@ -1,4 +1,5 @@
-import { PATHS, PAGE_TYPES } from "./";
+import * as PATHS from "./paths";
+import * as PAGE_TYPES from "./page-types";
 
 import { HomePage, LoginPage, TripsPage, NewTripPage } from "@pages";
 
