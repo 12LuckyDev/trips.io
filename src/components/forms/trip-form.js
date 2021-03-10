@@ -21,10 +21,7 @@ const sectionChangeHandler = (array, { value, oldValue }) => {
         if (v.dayFormType === "SINGLE") {
           lastDay++;
           return { ...v, day: lastDay };
-        } else if (
-          v.dayFormType === "RANGE" &&
-          Number.isInteger(parseInt(v.daysAmount))
-        ) {
+        } else if (v.dayFormType === "RANGE" && v.daysAmount !== null) {
           lastDay++;
           const rangeFirstDay = lastDay;
           lastDay += parseInt(v.daysAmount);
@@ -48,7 +45,7 @@ const formConfig = [
       id: getId(),
       sectionType: null,
       dayFormType: null,
-      daysAmount: "",
+      daysAmount: null,
       day: null,
     }),
     changeHandler: sectionChangeHandler,
@@ -60,6 +57,7 @@ const TripFrom = ({ onSuccess }) => {
   const onSubmit = () => {
     firestore.collection("trips").add(state).then(onSuccess);
   };
+
   return (
     <FancyForm onSubmit={onSubmit}>
       <FancyList keyField="key" data={inputsProps} component={FancyFormField} />

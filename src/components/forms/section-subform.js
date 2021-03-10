@@ -2,11 +2,10 @@ import React from "react";
 import { isFunc } from "@12luckydev/utils";
 import { FancyFormField } from "@fancy-components";
 import { Column } from "@styled-components";
-import { SECTION_TYPES, FIELD_TYPES } from "@consts";
+import { FIELD_TYPES, SECTION_OPTIONS } from "@consts";
 import DaySubform from "./day-subform";
 import { getFieldProps } from "@utils";
 
-// TODO maybe subsections can use context?
 const SectionSubform = ({ onChange, model }) => {
   const onChangeHandler = (value, name) => {
     if (isFunc(onChange)) {
@@ -18,14 +17,14 @@ const SectionSubform = ({ onChange, model }) => {
           } else {
             newModel.dayFormType = null;
             newModel.day = null;
-            newModel.daysAmount = "";
+            newModel.daysAmount = null;
           }
           break;
         case "dayFormType":
           if (value === "RANGE") {
-            newModel.daysAmount = "1";
+            newModel.daysAmount = 1;
           } else {
-            newModel.daysAmount = "";
+            newModel.daysAmount = null;
           }
           break;
         default:
@@ -42,7 +41,7 @@ const SectionSubform = ({ onChange, model }) => {
     <Column border>
       <FancyFormField
         type={FIELD_TYPES.SELECT}
-        data={SECTION_TYPES}
+        data={SECTION_OPTIONS}
         {...getFieldProps("sectionType", commonProsp)}
       />
       {model.sectionType === "DAY" && <DaySubform {...commonProsp} />}
