@@ -1,50 +1,59 @@
 import React from "react";
-import { isFunc } from "@12luckydev/utils";
 import { FancyFormField } from "@fancy-components";
 import { Column } from "@styled-components";
-import { FIELD_TYPES, SECTION_OPTIONS } from "@consts";
+import {
+  FIELD_TYPES,
+  SECTION_OPTIONS,
+  SECTION_TYPES,
+  DAY_FORM_TYPES,
+} from "@consts";
 import DaySubform from "./day-subform";
-import { getFieldProps } from "@utils";
+import { useSubform } from "@hooks";
+
+const customChangeAction = (value, name) => {
+  switch (name) {
+    case "sectionType":
+      if (value === SECTION_TYPES.DAY) {
+        return {
+          dayFormType: DAY_FORM_TYPES.SINGLE,
+        };
+      }
+      return {
+        dayFormType: null,
+        day: null,
+        daysAmount: null,
+      };
+    case "dayFormType":
+      if (value === DAY_FORM_TYPES.RANGE) {
+        return {
+          daysAmount: 1,
+        };
+      }
+      return {
+        daysAmount: null,
+      };
+    default:
+      return null;
+  }
+};
 
 const SectionSubform = ({ onChange, model }) => {
-  const onChangeHandler = (value, name) => {
-    if (isFunc(onChange)) {
-      const newModel = { ...model, [name]: value };
-      switch (name) {
-        case "sectionType":
-          if (value === "DAY") {
-            newModel.dayFormType = "SINGLE";
-          } else {
-            newModel.dayFormType = null;
-            newModel.day = null;
-            newModel.daysAmount = null;
-          }
-          break;
-        case "dayFormType":
-          if (value === "RANGE") {
-            newModel.daysAmount = 1;
-          } else {
-            newModel.daysAmount = null;
-          }
-          break;
-        default:
-          break;
-      }
-
-      onChange(newModel);
-    }
-  };
-
-  const commonProsp = { onChange: onChangeHandler, model };
+  const { getFormProps } = useSubform({
+    model,
+    onChange,
+    customChangeAction,
+  });
 
   return (
     <Column border>
       <FancyFormField
         type={FIELD_TYPES.SELECT}
         data={SECTION_OPTIONS}
-        {...getFieldProps("sectionType", commonProsp)}
+        {...getFormProps("sectionType")}
       />
-      {model.sectionType === "DAY" && <DaySubform {...commonProsp} />}
+      {model.sectionType === "DAY" && (
+        <DaySubform model={model} getFormProps={getFormProps} />
+      )}
     </Column>
   );
 };

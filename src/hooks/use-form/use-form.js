@@ -8,6 +8,11 @@ import { FORM_ACTIONS, FIELD_TYPES } from "@consts";
  * - map array to object (in utils)
  */
 
+/**
+ * REMEMBER
+ * - globalOnChange always has one arg, if onChange is on model Component should know what arg are
+ */
+
 const getInitialState = (formConfig) => {
   let state = {};
   formConfig.forEach(({ name, type }) => {
@@ -77,36 +82,31 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     []
   );
 
-  const onEditArrayValue = useCallback(
-    (value, name, index) => {
-      const config = formConfig.find((x) => x.name === name);
-      if (isFunc(config.changeHandler)) {
-        const oldArrayValue = state[name];
-        const oldValue = oldArrayValue[index];
-        const newArrayValue = editAt(oldArrayValue, value, index);
-        const handledArrayValue = config.changeHandler(newArrayValue, {
-          value,
-          index,
-          oldValue,
-        });
-        dispatch({
-          type: FORM_ACTIONS.VALUE_CHANGE,
-          payload: {
-            value: isArray(handledArrayValue)
-              ? handledArrayValue
-              : newArrayValue,
-            name,
-          },
-        });
-      } else {
-        dispatch({
-          type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
-          payload: { value, name, index },
-        });
-      }
-    },
-    [state, formConfig]
-  );
+  const onEditArrayValue = (value, name, index) => {
+    const config = formConfig.find((x) => x.name === name);
+    if (isFunc(config.changeHandler)) {
+      const oldArrayValue = state[name];
+      const oldValue = oldArrayValue[index];
+      const newArrayValue = editAt(oldArrayValue, value, index);
+      const handledArrayValue = config.changeHandler(newArrayValue, {
+        value,
+        index,
+        oldValue,
+      });
+      dispatch({
+        type: FORM_ACTIONS.VALUE_CHANGE,
+        payload: {
+          value: isArray(handledArrayValue) ? handledArrayValue : newArrayValue,
+          name,
+        },
+      });
+    } else {
+      dispatch({
+        type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
+        payload: { value, name, index },
+      });
+    }
+  };
 
   const inputsProps = formConfig.map(
     ({
