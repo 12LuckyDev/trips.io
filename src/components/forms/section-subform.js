@@ -38,7 +38,7 @@ const customChangeAction = (value, name) => {
 };
 
 const SectionSubform = ({ onChange, model }) => {
-  const { getFormProps } = useSubform({
+  const { getFieldProps } = useSubform({
     model,
     onChange,
     customChangeAction,
@@ -49,10 +49,10 @@ const SectionSubform = ({ onChange, model }) => {
       <FancyFormField
         type={FIELD_TYPES.SELECT}
         data={SECTION_OPTIONS}
-        {...getFormProps("sectionType")}
+        {...getFieldProps("sectionType")}
       />
       {model.sectionType === "DAY" && (
-        <DaySubform model={model} getFormProps={getFormProps} />
+        <DaySubform model={model} getFieldProps={getFieldProps} />
       )}
     </Column>
   );

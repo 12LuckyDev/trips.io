@@ -3,20 +3,20 @@ import { FIELD_TYPES, DAY_FORM_TYPES, DAY_FORM_OPTIONS } from "@consts";
 import { FancyFormField } from "@fancy-components";
 import DayInfoSubform from "./day-info-subform";
 
-const DaySubform = ({ model, getFormProps }) => {
+const DaySubform = ({ model, getFieldProps }) => {
   const { dayFormType, day, daysAmount } = model;
   return (
     <>
       <FancyFormField
         type={FIELD_TYPES.SELECT}
         data={DAY_FORM_OPTIONS}
-        {...getFormProps("dayFormType")}
+        {...getFieldProps("dayFormType")}
       />
       {dayFormType === DAY_FORM_TYPES.RANGE && (
         <FancyFormField
           type={FIELD_TYPES.NUMBER}
           labelText="Days range length"
-          {...getFormProps("daysAmount")}
+          {...getFieldProps("daysAmount")}
         />
       )}
       Day: {day}{" "}

@@ -1,6 +1,7 @@
 import { useReducer, useCallback } from "react";
 import { isObject, add, editAt, isFunc, isArray } from "@12luckydev/utils";
 import { FORM_ACTIONS, FIELD_TYPES } from "@consts";
+import getFieldPropsHelper from "./helpers/field-props-helper";
 
 /**
  * TODO:
@@ -70,7 +71,7 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
   const onChange = useCallback(
     (value, name) =>
       dispatch({ type: FORM_ACTIONS.VALUE_CHANGE, payload: { value, name } }),
-    []
+    [dispatch]
   );
 
   const onAddToArray = useCallback(
@@ -79,7 +80,7 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
         type: FORM_ACTIONS.ARRAY_VALUE_ADD,
         payload: { value, name },
       }),
-    []
+    [dispatch]
   );
 
   const onEditArrayValue = (value, name, index) => {
@@ -108,57 +109,16 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     }
   };
 
-  const inputsProps = formConfig.map(
-    ({
-      name,
-      type,
-      labelText,
-      component,
-      getNew,
-      modelPropName,
-      data = [],
-      idKey,
-      nameKey,
-    }) => {
-      const defaultProps = {
-        name,
-        type,
-        key: name,
-      };
+  const callbacks = {
+    onChange,
+    onAddToArray,
+    onEditArrayValue,
+  };
 
-      let customProps = null;
-
-      switch (type) {
-        case FIELD_TYPES.ARRAY:
-          return {
-            ...defaultProps,
-            data: state[name],
-            component,
-            modelPropName,
-            onAdd: () => onAddToArray(getNew(), name),
-            onChange: (value, index) => onEditArrayValue(value, name, index),
-          };
-        case FIELD_TYPES.SELECT:
-          customProps = {
-            data,
-            idKey,
-            nameKey,
-          };
-          break;
-        default:
-          customProps = null;
-          break;
-      }
-
-      return {
-        ...defaultProps,
-        ...customProps,
-        onChange,
-        value: state[name],
-        labelText,
-      };
-    }
+  const inputsProps = formConfig.map((config) =>
+    getFieldPropsHelper(config, callbacks, state)
   );
+
   return { inputsProps, state };
 };
 

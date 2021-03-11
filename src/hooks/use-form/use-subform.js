@@ -34,13 +34,13 @@ const useSubform = ({
     }
   };
 
-  const getFormProps = (name) => ({
+  const getFieldProps = (name) => ({
     name,
     value: model[name],
     onChange: onChangeHandler,
   });
 
-  return { onChangeHandler, getFormProps };
+  return { onChangeHandler, getFieldProps };
 };
 
 export default useSubform;
