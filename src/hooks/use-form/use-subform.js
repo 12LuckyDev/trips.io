@@ -1,13 +1,8 @@
 import { useCallback } from "react";
 import { isFunc } from "@12luckydev/utils";
+import getFieldPropsHelper from "./helpers/field-props-helper";
 
-const useSubform = ({
-  model,
-  onChange,
-  subName,
-  customChangeAction,
-  defaultChangeOnCustom = true,
-} = {}) => {
+const useSubform = ({ model, onChange, subName } = {}) => {
   const onChangeCallback = useCallback(
     (newModel) => {
       if (isFunc(onChange)) {
@@ -21,26 +16,27 @@ const useSubform = ({
     [onChange, subName]
   );
 
-  const onChangeHandler = (value, name) => {
-    if (isFunc(customChangeAction)) {
-      const modelOverride = customChangeAction(value, name, model);
-      const defaultNewValue = defaultChangeOnCustom ? { [name]: value } : null;
-      const newModel = !!modelOverride
-        ? { ...model, ...defaultNewValue, ...modelOverride }
-        : { ...model, [name]: value };
-      onChangeCallback(newModel);
+  const onValueChange = (value, name) => {
+    onChangeCallback({ ...model, [name]: value });
+  };
+
+  const onModelChange = (newModel, mergeWithOld = true) => {
+    if (mergeWithOld) {
+      onChangeCallback({ ...model, ...newModel });
     } else {
-      onChangeCallback({ ...model, [name]: value });
+      onChangeCallback(newModel);
     }
   };
 
-  const getFieldProps = (name) => ({
-    name,
-    value: model[name],
-    onChange: onChangeHandler,
-  });
+  const callbacks = {
+    onValueChange,
+    onModelChange,
+  };
 
-  return { onChangeHandler, getFieldProps };
+  const getFieldProps = (name, fieldConfig = {}) =>
+    getFieldPropsHelper({ ...fieldConfig, name }, callbacks, model, false);
+
+  return { getFieldProps };
 };
 
 export default useSubform;

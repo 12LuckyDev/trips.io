@@ -3,20 +3,26 @@ import { FIELD_TYPES, DAY_FORM_TYPES, DAY_FORM_OPTIONS } from "@consts";
 import { FancyFormField } from "@fancy-components";
 import DayInfoSubform from "./day-info-subform";
 
+const dayFormTypeChangeHandler = (value) =>
+  value === DAY_FORM_TYPES.RANGE ? { daysAmount: 1 } : { aysAmount: null };
+
 const DaySubform = ({ model, getFieldProps }) => {
-  const { dayFormType, day, daysAmount } = model;
+  const { dayFormType, day, daysAmount, info } = model;
   return (
     <>
       <FancyFormField
-        type={FIELD_TYPES.SELECT}
-        data={DAY_FORM_OPTIONS}
-        {...getFieldProps("dayFormType")}
+        {...getFieldProps("dayFormType", {
+          type: FIELD_TYPES.SELECT,
+          data: DAY_FORM_OPTIONS,
+          changeHandler: dayFormTypeChangeHandler,
+        })}
       />
       {dayFormType === DAY_FORM_TYPES.RANGE && (
         <FancyFormField
-          type={FIELD_TYPES.NUMBER}
-          labelText="Days range length"
-          {...getFieldProps("daysAmount")}
+          {...getFieldProps("daysAmount", {
+            type: FIELD_TYPES.NUMBER,
+            labelText: "Days range length",
+          })}
         />
       )}
       Day: {day}{" "}
@@ -26,8 +32,8 @@ const DaySubform = ({ model, getFieldProps }) => {
       <FancyFormField
         component={DayInfoSubform}
         type={FIELD_TYPES.ARRAY}
-        data={[{}]}
-        name="dayInfo"
+        data={info}
+        name="info"
       />
     </>
   );

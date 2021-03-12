@@ -1,4 +1,29 @@
+import { isFunc, editAt } from "@12luckydev/utils";
 import { FIELD_TYPES } from "@consts";
+
+const handleChangeHandler = (
+  changeHandler,
+  applyDefaultChange,
+  value,
+  model,
+  name
+) => {
+  const newModel = changeHandler(value, model, name);
+  if (applyDefaultChange) {
+    return { [name]: value, ...newModel };
+  }
+  return newModel;
+};
+
+const handleArrayChangeHandler = (arrayChangeHandler, oldArray, value, index) => {
+  const oldValue = oldArray[index];
+  const newArrayValue = editAt(oldArray, value, index);
+  return arrayChangeHandler(newArrayValue, {
+    value,
+    index,
+    oldValue,
+  });
+};
 
 // TODO: this func should be useb by useSubform too
 const getFieldPropsHelper = (
@@ -17,17 +42,30 @@ const getFieldPropsHelper = (
     data = [],
     idKey,
     nameKey,
+    arrayChangeHandler,
+    changeHandler,
+    applyDefaultChange = true,
   } = fieldData;
 
-  const { onAddToArray, onEditArrayValue, onChange } = callbacks;
+  const {
+    onAddToArray,
+    onEditArrayValue,
+    onValueChange,
+    onModelChange,
+  } = callbacks;
 
-  let defaultProps = {
-    name,
-    type,
-  };
+  let defaultProps = { name };
 
   if (addKey) {
     defaultProps.key = name;
+  }
+
+  if (!!labelText) {
+    defaultProps.labelText = labelText;
+  }
+
+  if (!!type) {
+    defaultProps.type = type;
   }
 
   let customProps = null;
@@ -40,7 +78,16 @@ const getFieldPropsHelper = (
         component,
         modelPropName,
         onAdd: () => onAddToArray(getNew(), name),
-        onChange: (value, index) => onEditArrayValue(value, name, index),
+        onChange: (value, index) => {
+          if (isFunc(arrayChangeHandler)) {
+            onValueChange(
+              handleArrayChangeHandler(arrayChangeHandler, model[name], value, index),
+              name
+            );
+          } else {
+            onEditArrayValue(value, name, index);
+          }
+        },
       };
     case FIELD_TYPES.SELECT:
       customProps = {
@@ -57,9 +104,19 @@ const getFieldPropsHelper = (
   return {
     ...defaultProps,
     ...customProps,
-    onChange,
+    onChange: isFunc(changeHandler)
+      ? (value) =>
+          onModelChange(
+            handleChangeHandler(
+              changeHandler,
+              applyDefaultChange,
+              value,
+              model,
+              name
+            )
+          )
+      : onValueChange,
     value: model[name],
-    labelText,
   };
 };
 

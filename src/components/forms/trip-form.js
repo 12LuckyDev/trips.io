@@ -47,8 +47,9 @@ const formConfig = [
       dayFormType: null,
       daysAmount: null,
       day: null,
+      info: [],
     }),
-    changeHandler: sectionChangeHandler,
+    arrayChangeHandler: sectionChangeHandler,
   },
 ];
 

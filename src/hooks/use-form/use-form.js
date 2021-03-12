@@ -1,5 +1,5 @@
 import { useReducer, useCallback } from "react";
-import { isObject, add, editAt, isFunc, isArray } from "@12luckydev/utils";
+import { add, editAt } from "@12luckydev/utils";
 import { FORM_ACTIONS, FIELD_TYPES } from "@consts";
 import getFieldPropsHelper from "./helpers/field-props-helper";
 
@@ -50,15 +50,17 @@ const formReducer = (state, action) => {
           payload.index
         ),
       };
+    case FORM_ACTIONS.MODEL_CHANGE:
+      return {
+        ...payload,
+      };
+    case FORM_ACTIONS.MERGE_WITH_MODEL:
+      return {
+        ...state,
+        ...payload,
+      };
     default:
-      if (!type && isObject(payload)) {
-        return {
-          ...state,
-          ...payload,
-        };
-      } else {
-        throw new Error();
-      }
+      throw new Error("NO TYPE");
   }
 };
 
@@ -68,7 +70,18 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     initialState || getInitialState(formConfig)
   );
 
-  const onChange = useCallback(
+  const onModelChange = useCallback(
+    (newModel, mergeWithOld = true) =>
+      dispatch({
+        type: mergeWithOld
+          ? FORM_ACTIONS.MERGE_WITH_MODEL
+          : FORM_ACTIONS.MODEL_CHANGE,
+        payload: newModel,
+      }),
+    [dispatch]
+  );
+
+  const onValueChange = useCallback(
     (value, name) =>
       dispatch({ type: FORM_ACTIONS.VALUE_CHANGE, payload: { value, name } }),
     [dispatch]
@@ -83,36 +96,20 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     [dispatch]
   );
 
-  const onEditArrayValue = (value, name, index) => {
-    const config = formConfig.find((x) => x.name === name);
-    if (isFunc(config.changeHandler)) {
-      const oldArrayValue = state[name];
-      const oldValue = oldArrayValue[index];
-      const newArrayValue = editAt(oldArrayValue, value, index);
-      const handledArrayValue = config.changeHandler(newArrayValue, {
-        value,
-        index,
-        oldValue,
-      });
-      dispatch({
-        type: FORM_ACTIONS.VALUE_CHANGE,
-        payload: {
-          value: isArray(handledArrayValue) ? handledArrayValue : newArrayValue,
-          name,
-        },
-      });
-    } else {
+  const onEditArrayValue = useCallback(
+    (value, name, index) =>
       dispatch({
         type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
         payload: { value, name, index },
-      });
-    }
-  };
+      }),
+    [dispatch]
+  );
 
   const callbacks = {
-    onChange,
+    onValueChange,
     onAddToArray,
     onEditArrayValue,
+    onModelChange,
   };
 
   const inputsProps = formConfig.map((config) =>
