@@ -10,10 +10,9 @@ const sectionChangeHandler = (array, { value, oldValue }) => {
   const { sectionType, dayFormType, daysAmount } = value;
 
   if (
-    sectionType === "DAY" &&
-    (sectionType !== oldValue.sectionType ||
-      dayFormType !== oldValue.dayFormType ||
-      (dayFormType === "RANGE" && daysAmount !== oldValue.daysAmount))
+    sectionType !== oldValue.sectionType ||
+    dayFormType !== oldValue.dayFormType ||
+    (dayFormType === "RANGE" && daysAmount !== oldValue.daysAmount)
   ) {
     let lastDay = 0;
     return array.map((v) => {
@@ -31,6 +30,7 @@ const sectionChangeHandler = (array, { value, oldValue }) => {
       return v;
     });
   }
+  return array;
 };
 
 const formConfig = [

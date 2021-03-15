@@ -1215,6 +1215,18 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bit/luckydev.react-custom.components@0.0.11":
+  version "0.0.11"
+  resolved "https://node.bit.dev/luckydev.react-custom.components/-/luckydev.react-custom.components-0.0.11.tgz#8fdec2d4e4b4792d3502639ffa07767bae5b47a3"
+  integrity sha1-j97C1OS0eS01AmOf+gd2e65bR6M=
+  dependencies:
+    "@bit/luckydev.react-custom.custom-button" "0.0.4"
+    "@bit/luckydev.react-custom.custom-div-wrapper" "0.0.5"
+    "@bit/luckydev.react-custom.custom-input-base" "0.0.4"
+    "@bit/luckydev.react-custom.custom-label" "0.0.4"
+    "@bit/luckydev.react-custom.props-interfaces" "0.0.9"
+    "@types/react" "^17.0.2"
+
 "@bit/luckydev.react-custom.custom-button@0.0.4", "@bit/luckydev.react-custom.custom-button@^0.0.4":
   version "0.0.4"
   resolved "https://node.bit.dev/luckydev.react-custom.custom-button/-/luckydev.react-custom.custom-button-0.0.4.tgz#75fa92b3871951b35d3c74e8ff5288d8982c4e50"
@@ -1222,10 +1234,10 @@
   dependencies:
     "@types/react" "^17.0.2"
 
-"@bit/luckydev.react-custom.custom-div-wrapper@0.0.4":
-  version "0.0.4"
-  resolved "https://node.bit.dev/luckydev.react-custom.custom-div-wrapper/-/luckydev.react-custom.custom-div-wrapper-0.0.4.tgz#c461bf705c5b53772a7659f19e39ab0170786746"
-  integrity sha1-xGG/cFxbU3cqdlnxnjmrAXB4Z0Y=
+"@bit/luckydev.react-custom.custom-div-wrapper@0.0.5":
+  version "0.0.5"
+  resolved "https://node.bit.dev/luckydev.react-custom.custom-div-wrapper/-/luckydev.react-custom.custom-div-wrapper-0.0.5.tgz#1511f8beafa0125112d2303c195d176fc91f9f10"
+  integrity sha1-FRH4vq+gElES0jA8GV0Xb8kfnxA=
   dependencies:
     "@types/react" "^17.0.2"
 
@@ -1261,7 +1273,7 @@
   dependencies:
     "@bit/luckydev.react-custom.custom-with-label-base-props" "0.0.4"
 
-"@bit/luckydev.react-custom.custom-label@0.0.4":
+"@bit/luckydev.react-custom.custom-label@0.0.4", "@bit/luckydev.react-custom.custom-label@^0.0.4":
   version "0.0.4"
   resolved "https://node.bit.dev/luckydev.react-custom.custom-label/-/luckydev.react-custom.custom-label-0.0.4.tgz#c9b57aa21d07904a594f123e522d72e6a1b01f6e"
   integrity sha1-ybV6oh0HkEpZTxI+Ui1y5qGwH24=
@@ -1269,17 +1281,15 @@
     "@bit/luckydev.react-custom.custom-label-props" "0.0.4"
     "@types/react" "^17.0.2"
 
-"@bit/luckydev.react-custom.custom-number-input@^0.0.4":
-  version "0.0.4"
-  resolved "https://node.bit.dev/luckydev.react-custom.custom-number-input/-/luckydev.react-custom.custom-number-input-0.0.4.tgz#e701bf43a8e74437cc4b8a2b5e321854a8f3748a"
-  integrity sha1-5wG/Q6jnRDfMS4orXjIYVKjzdIo=
+"@bit/luckydev.react-custom.custom-number-input@^0.0.11":
+  version "0.0.11"
+  resolved "https://node.bit.dev/luckydev.react-custom.custom-number-input/-/luckydev.react-custom.custom-number-input-0.0.11.tgz#0d4b692b646ef2628fb0d96279981fda34746fad"
+  integrity sha1-DUtpK2Ru8mKPsNlieZgf2jR0b60=
   dependencies:
     "@12luckydev/utils" "^1.5.0"
-    "@bit/luckydev.react-custom.custom-button" "0.0.4"
-    "@bit/luckydev.react-custom.custom-div-wrapper" "0.0.4"
-    "@bit/luckydev.react-custom.custom-input-base" "0.0.4"
-    "@bit/luckydev.react-custom.custom-label" "0.0.4"
+    "@bit/luckydev.react-custom.components" "0.0.11"
     "@bit/luckydev.react-custom.custom-with-label-props" "0.0.4"
+    "@bit/luckydev.react-custom.props-interfaces" "0.0.9"
     "@types/react" "^17.0.2"
 
 "@bit/luckydev.react-custom.custom-with-label-base-props@0.0.4":
@@ -1293,6 +1303,13 @@
   integrity sha1-q5SdgmQDYE97/t2UsAm+GL+Ha8I=
   dependencies:
     "@bit/luckydev.react-custom.custom-with-label-base-props" "0.0.4"
+
+"@bit/luckydev.react-custom.props-interfaces@0.0.9":
+  version "0.0.9"
+  resolved "https://node.bit.dev/luckydev.react-custom.props-interfaces/-/luckydev.react-custom.props-interfaces-0.0.9.tgz#8fde7dd218d0313a4461632022262c9bae9905ca"
+  integrity sha1-j9590hjQMTpEYWMgIiYsm66ZBco=
+  dependencies:
+    "@bit/luckydev.react-custom.custom-with-label-props" "0.0.4"
 
 "@cnakazawa/watch@^1.0.3":
   version "1.0.4"
@@ -4140,11 +4157,6 @@ crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
-
-crypto@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/crypto/-/crypto-1.0.1.tgz#2af1b7cad8175d24c8a1b0778255794a21803037"
-  integrity sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==
 
 css-blank-pseudo@^0.1.4:
   version "0.1.4"
@@ -11672,6 +11684,11 @@ uuid@^8.3.0:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
   integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
+
+uuid@^8.3.2:
+  version "8.3.2"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
+  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3:
   version "2.2.0"

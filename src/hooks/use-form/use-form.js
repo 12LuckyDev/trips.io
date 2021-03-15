@@ -1,6 +1,5 @@
 import { useReducer, useCallback } from "react";
-import { add, editAt } from "@12luckydev/utils";
-import { FORM_ACTIONS, FIELD_TYPES } from "@consts";
+import { FIELD_TYPES, HOOK_ACTIONS } from "@consts";
 import getFieldPropsHelper from "./helpers/field-props-helper";
 
 /**
@@ -31,30 +30,11 @@ const getInitialState = (formConfig) => {
 const formReducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case FORM_ACTIONS.VALUE_CHANGE:
-      return {
-        ...state,
-        [payload.name]: payload.value,
-      };
-    case FORM_ACTIONS.ARRAY_VALUE_ADD:
-      return {
-        ...state,
-        [payload.name]: add(state[payload.name], payload.value),
-      };
-    case FORM_ACTIONS.ARRAY_VALUE_CHANGE:
-      return {
-        ...state,
-        [payload.name]: editAt(
-          state[payload.name],
-          payload.value,
-          payload.index
-        ),
-      };
-    case FORM_ACTIONS.MODEL_CHANGE:
+    case HOOK_ACTIONS.MODEL_CHANGE:
       return {
         ...payload,
       };
-    case FORM_ACTIONS.MERGE_WITH_MODEL:
+    case HOOK_ACTIONS.MERGE_WITH_MODEL:
       return {
         ...state,
         ...payload,
@@ -74,46 +54,15 @@ const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
     (newModel, mergeWithOld = true) =>
       dispatch({
         type: mergeWithOld
-          ? FORM_ACTIONS.MERGE_WITH_MODEL
-          : FORM_ACTIONS.MODEL_CHANGE,
+          ? HOOK_ACTIONS.MERGE_WITH_MODEL
+          : HOOK_ACTIONS.MODEL_CHANGE,
         payload: newModel,
       }),
     [dispatch]
   );
 
-  const onValueChange = useCallback(
-    (value, name) =>
-      dispatch({ type: FORM_ACTIONS.VALUE_CHANGE, payload: { value, name } }),
-    [dispatch]
-  );
-
-  const onAddToArray = useCallback(
-    (value, name) =>
-      dispatch({
-        type: FORM_ACTIONS.ARRAY_VALUE_ADD,
-        payload: { value, name },
-      }),
-    [dispatch]
-  );
-
-  const onEditArrayValue = useCallback(
-    (value, name, index) =>
-      dispatch({
-        type: FORM_ACTIONS.ARRAY_VALUE_CHANGE,
-        payload: { value, name, index },
-      }),
-    [dispatch]
-  );
-
-  const callbacks = {
-    onValueChange,
-    onAddToArray,
-    onEditArrayValue,
-    onModelChange,
-  };
-
   const inputsProps = formConfig.map((config) =>
-    getFieldPropsHelper(config, callbacks, state)
+    getFieldPropsHelper(config, onModelChange, state)
   );
 
   return { inputsProps, state };

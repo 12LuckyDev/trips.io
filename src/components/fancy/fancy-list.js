@@ -1,7 +1,7 @@
 import React from "react";
-import { FancyListElement, FancyButton } from "@fancy-components";
+import { FancyListElement, FancyButton, FancyLabel } from "@fancy-components";
 import { Column } from "@styled-components";
-import { isObject } from "@12luckydev/utils";
+import { isFunc, isObject } from "@12luckydev/utils";
 
 const modelHandler = (model, keyField, index) => {
   if (!isObject(model, false)) {
@@ -27,15 +27,24 @@ const FancyList = ({
   onAdd,
   data = [],
   keyField,
+  name,
+  labelText
 }) => {
+  const onGlobalChangeHandler = isFunc(globalOnChange)
+    ? (value, index) => {
+        globalOnChange(value, index, name);
+      }
+    : null;
+
   return (
     <Column>
+      {labelText && <FancyLabel labelText={labelText} />}
       {data.map((model, index) => (
         <FancyListElement
           index={index}
           component={Component}
           modelPropName={modelPropName}
-          globalOnChange={globalOnChange}
+          globalOnChange={onGlobalChangeHandler}
           {...modelHandler(model, keyField, index)}
         />
       ))}

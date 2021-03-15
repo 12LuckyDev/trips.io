@@ -30,10 +30,13 @@ const DaySubform = ({ model, getFieldProps }) => {
         daysAmount !== null &&
         `- ${day + daysAmount}`}
       <FancyFormField
-        component={DayInfoSubform}
-        type={FIELD_TYPES.ARRAY}
-        data={info}
-        name="info"
+        {...getFieldProps("info", {
+          type: FIELD_TYPES.ARRAY,
+          component: DayInfoSubform,
+          data: info,
+          labelText: "Day Info:",
+          getNew: () => ({}),
+        })}
       />
     </>
   );

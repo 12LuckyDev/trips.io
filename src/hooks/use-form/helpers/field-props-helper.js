@@ -1,34 +1,10 @@
-import { isFunc, editAt } from "@12luckydev/utils";
-import { FIELD_TYPES } from "@consts";
+import { isFunc } from "@12luckydev/utils";
+import { FIELD_TYPES, FORM_ACTIONS } from "@consts";
+import modelChangeHelper from "./model-change-helper";
 
-const handleChangeHandler = (
-  changeHandler,
-  applyDefaultChange,
-  value,
-  model,
-  name
-) => {
-  const newModel = changeHandler(value, model, name);
-  if (applyDefaultChange) {
-    return { [name]: value, ...newModel };
-  }
-  return newModel;
-};
-
-const handleArrayChangeHandler = (arrayChangeHandler, oldArray, value, index) => {
-  const oldValue = oldArray[index];
-  const newArrayValue = editAt(oldArray, value, index);
-  return arrayChangeHandler(newArrayValue, {
-    value,
-    index,
-    oldValue,
-  });
-};
-
-// TODO: this func should be useb by useSubform too
 const getFieldPropsHelper = (
   fieldData = {},
-  callbacks = {},
+  onModelChange,
   model = {},
   addKey = true
 ) => {
@@ -46,14 +22,6 @@ const getFieldPropsHelper = (
     changeHandler,
     applyDefaultChange = true,
   } = fieldData;
-
-  const {
-    onAddToArray,
-    onEditArrayValue,
-    onValueChange,
-    onModelChange,
-  } = callbacks;
-
   let defaultProps = { name };
 
   if (addKey) {
@@ -77,17 +45,24 @@ const getFieldPropsHelper = (
         data: model[name],
         component,
         modelPropName,
-        onAdd: () => onAddToArray(getNew(), name),
-        onChange: (value, index) => {
-          if (isFunc(arrayChangeHandler)) {
-            onValueChange(
-              handleArrayChangeHandler(arrayChangeHandler, model[name], value, index),
-              name
-            );
-          } else {
-            onEditArrayValue(value, name, index);
-          }
-        },
+        onAdd: isFunc(getNew)
+          ? () =>
+              onModelChange(
+                modelChangeHelper(FORM_ACTIONS.ARRAY_VALUE_ADD, model, {
+                  name,
+                  getNew,
+                })
+              )
+          : null,
+        onChange: (value, index) =>
+          onModelChange(
+            modelChangeHelper(FORM_ACTIONS.ARRAY_VALUE_CHANGE, model, {
+              name,
+              value,
+              index,
+              arrayChangeHandler,
+            })
+          ),
       };
     case FIELD_TYPES.SELECT:
       customProps = {
@@ -104,18 +79,15 @@ const getFieldPropsHelper = (
   return {
     ...defaultProps,
     ...customProps,
-    onChange: isFunc(changeHandler)
-      ? (value) =>
-          onModelChange(
-            handleChangeHandler(
-              changeHandler,
-              applyDefaultChange,
-              value,
-              model,
-              name
-            )
-          )
-      : onValueChange,
+    onChange: (value) =>
+      onModelChange(
+        modelChangeHelper(FORM_ACTIONS.VALUE_CHANGE, model, {
+          name,
+          value,
+          changeHandler,
+          applyDefaultChange,
+        })
+      ),
     value: model[name],
   };
 };

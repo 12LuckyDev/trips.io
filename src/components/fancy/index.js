@@ -12,3 +12,4 @@ export { default as FancyListElement } from "./fancy-list-element";
 export { default as FancyButtonsGroup } from "./fancy-buttons-group";
 export { default as FancyButtonsGroupRow } from "./fancy-buttons-group-row";
 export { default as FancyNumberInput } from "./fancy-number-input";
+export { default as FancyLabel } from "./fancy-label";

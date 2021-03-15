@@ -16,10 +16,6 @@ const useSubform = ({ model, onChange, subName } = {}) => {
     [onChange, subName]
   );
 
-  const onValueChange = (value, name) => {
-    onChangeCallback({ ...model, [name]: value });
-  };
-
   const onModelChange = (newModel, mergeWithOld = true) => {
     if (mergeWithOld) {
       onChangeCallback({ ...model, ...newModel });
@@ -28,13 +24,8 @@ const useSubform = ({ model, onChange, subName } = {}) => {
     }
   };
 
-  const callbacks = {
-    onValueChange,
-    onModelChange,
-  };
-
   const getFieldProps = (name, fieldConfig = {}) =>
-    getFieldPropsHelper({ ...fieldConfig, name }, callbacks, model, false);
+    getFieldPropsHelper({ ...fieldConfig, name }, onModelChange, model, false);
 
   return { getFieldProps };
 };
