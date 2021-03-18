@@ -14,7 +14,7 @@ const getFieldPropsHelper = (
     labelText,
     component,
     getNew,
-    modelPropName,
+    modelPropName = "model",
     data = [],
     idKey,
     nameKey,

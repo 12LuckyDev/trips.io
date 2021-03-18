@@ -10,6 +10,9 @@ export { default as DAY_FORM_OPTIONS } from "./form-options/day-form-options";
 export * as SECTION_TYPES from "./form-options/section-types";
 export { default as SECTION_OPTIONS } from "./form-options/section-options";
 
+export * as DAY_INFO_TYPES from "./form-options/day-info-types";
+export { default as DAY_INFO_OPTIONS } from "./form-options/day-info-options";
+
 // FORM HOOK
 export * as FIELD_TYPES from "./form-hook/field-types";
 export * as FORM_ACTIONS from "./form-hook/form-actions";

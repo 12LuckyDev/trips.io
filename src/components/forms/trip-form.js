@@ -40,7 +40,6 @@ const formConfig = [
     name: "sections",
     type: FIELD_TYPES.ARRAY,
     component: SectionSubform,
-    modelPropName: "model",
     getNew: () => ({
       id: getId(),
       sectionType: null,
