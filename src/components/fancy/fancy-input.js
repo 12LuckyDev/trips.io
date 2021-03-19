@@ -1,14 +1,31 @@
 import React from "react";
-import { CustomInput } from "@custom-components";
-import { StyledInput, StyledLabel, StyledLabelText } from "@styled-components";
+import { CustomInput, CustomTextarea } from "@custom-components";
+import {
+  StyledInput,
+  StyledLabel,
+  StyledLabelText,
+  StyledTextarea,
+} from "@styled-components";
 
-const FancyInput = (props) => {
+const FancyInput = ({ inputType, ...restProps }) => {
+  if (inputType === "textarea") {
+    return (
+      <CustomTextarea
+        labelComponent={StyledLabel}
+        labelTextComponent={StyledLabelText}
+        textareaComponent={StyledTextarea}
+        rows={6}
+        {...restProps}
+      />
+    );
+  }
   return (
     <CustomInput
       labelComponent={StyledLabel}
-      inputComponent={StyledInput}
       labelTextComponent={StyledLabelText}
-      {...props}
+      inputComponent={StyledInput}
+      type={inputType}
+      {...restProps}
     />
   );
 };

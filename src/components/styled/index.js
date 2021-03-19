@@ -5,6 +5,7 @@ export { default as StyledLabel } from "./styled-label";
 export { default as StyledLabelText } from "./styled-label-text";
 export { default as StyledNumberInput } from "./styled-number-input";
 export { default as StyledNumberButton } from "./styled-number-button";
+export { default as StyledTextarea } from "./styled-textarea";
 
 export { default as Row } from "./row";
 export { default as Column } from "./column";

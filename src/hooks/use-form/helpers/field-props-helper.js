@@ -21,6 +21,7 @@ const getFieldPropsHelper = (
     arrayChangeHandler,
     changeHandler,
     applyDefaultChange = true,
+    inputType = "text",
   } = fieldData;
   let defaultProps = { name };
 
@@ -69,6 +70,11 @@ const getFieldPropsHelper = (
         data,
         idKey,
         nameKey,
+      };
+      break;
+    case FIELD_TYPES.TEXT:
+      customProps = {
+        inputType,
       };
       break;
     default:

@@ -35,7 +35,12 @@ const sectionChangeHandler = (array, { value, oldValue }) => {
 
 const formConfig = [
   { name: "title", type: FIELD_TYPES.TEXT, labelText: "Trip title" },
-  { name: "text", type: FIELD_TYPES.TEXT, labelText: "Trip description" },
+  {
+    name: "text",
+    type: FIELD_TYPES.TEXT,
+    labelText: "Trip description",
+    inputType: "textarea",
+  },
   {
     name: "sections",
     type: FIELD_TYPES.ARRAY,
