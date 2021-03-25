@@ -4,7 +4,7 @@ import { FancyFormField } from "@fancy-components";
 import DayInfoSubform from "./day-info-subform";
 
 const dayFormTypeChangeHandler = (value) =>
-  value === DAY_FORM_TYPES.RANGE ? { daysAmount: 1 } : { aysAmount: null };
+  value === DAY_FORM_TYPES.RANGE ? { daysAmount: 1 } : { daysAmount: null };
 
 const DaySubform = ({ model, getFieldProps }) => {
   const { dayFormType, day, daysAmount, info } = model;

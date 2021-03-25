@@ -16,16 +16,21 @@ const useSubform = ({ model, onChange, subName } = {}) => {
     [onChange, subName]
   );
 
-  const onModelChange = (newModel, mergeWithOld = true) => {
-    if (mergeWithOld) {
+  const onModelChange = (newModel, mergeModel = true) => {
+    if (mergeModel) {
       onChangeCallback({ ...model, ...newModel });
     } else {
       onChangeCallback(newModel);
     }
   };
 
-  const getFieldProps = (name, fieldConfig = {}) =>
-    getFieldPropsHelper({ ...fieldConfig, name }, onModelChange, model, false);
+  const getFieldProps = (name, fieldConfig = {}, mergeModel = true) =>
+    getFieldPropsHelper(
+      { ...fieldConfig, name },
+      (newModel) => onModelChange(newModel, mergeModel),
+      model,
+      false
+    );
 
   return { getFieldProps };
 };

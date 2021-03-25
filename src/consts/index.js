@@ -13,6 +13,10 @@ export { default as SECTION_OPTIONS } from "./form-options/section-options";
 export * as DAY_INFO_TYPES from "./form-options/day-info-types";
 export { default as DAY_INFO_OPTIONS } from "./form-options/day-info-options";
 
+export * as ACCOMMODATION_MEALS_TYPES from "./form-options/accommodation-meals-types";
+export { default as ACCOMMODATION_MEALS_OPTIONS } from "./form-options/accommodation-meals-options";
+
+
 // FORM HOOK
 export * as FIELD_TYPES from "./form-hook/field-types";
 export * as FORM_ACTIONS from "./form-hook/form-actions";
