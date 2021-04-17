@@ -1,3 +1,2 @@
-import { auth, firestore } from "./firebase";
-
-export { auth, firestore };
+export * from "./firebase";
+export * from "./local-image-db";

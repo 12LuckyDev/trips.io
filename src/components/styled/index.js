@@ -6,7 +6,9 @@ export { default as StyledLabelText } from "./styled-label-text";
 export { default as StyledNumberInput } from "./styled-number-input";
 export { default as StyledNumberButton } from "./styled-number-button";
 export { default as StyledTextarea } from "./styled-textarea";
-
+export { default as StyledImage } from "./styled-image";
+export { default as StyledRangeInput } from "./styled-range-input";
+export { default as StyledIcoButton } from "./styled-ico-button";
 export { default as Row } from "./row";
 export { default as Column } from "./column";
 export { default as FormRow } from "./form-row";
