@@ -4,7 +4,7 @@
 	"private": true,
 	"dependencies": {
 		"@12luckydev/utils": "^1.7.0",
-		"@bit/luckydev.react-custom.custom-button": "^0.0.8",
+		"@bit/luckydev.react-custom.custom-button": "^0.0.9",
 		"@bit/luckydev.react-custom.custom-input": "^0.0.4",
 		"@bit/luckydev.react-custom.custom-label": "^0.0.4",
 		"@bit/luckydev.react-custom.custom-number-input": "^0.0.12",
