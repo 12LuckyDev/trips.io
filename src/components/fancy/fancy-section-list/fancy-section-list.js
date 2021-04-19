@@ -27,15 +27,11 @@ const arrayHandler = (array, operation, { newValue, index } = {}) => {
 
 const FancySectionList = ({
 	value = [],
-	options = [],
-	component,
 	onChange,
 	name,
-	typePropName,
 	keyPropName = "id",
 	getNew = defaultGetNew,
-	componentProps,
-	typeChangeHandler,
+	...panelProps
 }) => {
 	const onChangeHandler = (newValue) => {
 		if (isFunc(onChange)) {
@@ -59,12 +55,8 @@ const FancySectionList = ({
 					key={v[keyPropName]}
 					value={v}
 					index={i}
-					options={options}
-					typePropName={typePropName}
 					onChange={onSectionChangeHandler}
-					component={component}
-					componentProps={componentProps}
-					typeChangeHandler={typeChangeHandler}
+					{...panelProps}
 				/>
 			))}
 			{

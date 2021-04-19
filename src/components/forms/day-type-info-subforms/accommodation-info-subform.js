@@ -5,8 +5,11 @@ import {
 	ACCOMMODATION_MEALS_OPTIONS,
 	IMAGE_FORM_TYPES,
 } from "@consts";
+import { useSubform } from "@hooks";
 
-const AccommodationInfoSubform = ({ getFieldProps }) => {
+const AccommodationInfoSubform = ({ model, onChange }) => {
+	const { getFieldProps } = useSubform({ onChange, model });
+
 	return (
 		<>
 			<FancyImageSubform
