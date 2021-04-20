@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"@12luckydev/utils": "^1.7.0",
+		"@12luckydev/array-handler": "^1.0.0",
+		"@12luckydev/utils": "^1.9.0",
 		"@bit/luckydev.react-custom.custom-button": "^0.0.9",
 		"@bit/luckydev.react-custom.custom-input": "^0.0.4",
 		"@bit/luckydev.react-custom.custom-label": "^0.0.4",

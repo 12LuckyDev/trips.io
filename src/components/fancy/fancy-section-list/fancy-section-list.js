@@ -1,29 +1,10 @@
 import React from "react";
 import { FancyButton, FancySectionPanel } from "@fancy-components";
-import { add, isFunc, editAt } from "@12luckydev/utils";
+import { isFunc } from "@12luckydev/utils";
+import arrayHandler, { ARRAY_OPERATION } from "@12luckydev/array-handler";
 import { getId } from "@utils";
 
 const defaultGetNew = () => ({ id: getId() });
-
-// TODO
-// add in utils editPropAt(index)
-// move this to new package
-
-const ARRAY_OPERATIONS = {
-	ADD: "ADD",
-	EDIT_AT: "EDIT_AT",
-};
-
-const arrayHandler = (array, operation, { newValue, index } = {}) => {
-	switch (operation) {
-		case ARRAY_OPERATIONS.ADD:
-			return add(array, newValue);
-		case ARRAY_OPERATIONS.EDIT_AT:
-			return editAt(array, newValue, index);
-		default:
-			return array;
-	}
-};
 
 const FancySectionList = ({
 	value = [],
@@ -41,7 +22,7 @@ const FancySectionList = ({
 
 	const onSectionChangeHandler = (newValue, index) => {
 		onChangeHandler(
-			arrayHandler(value, ARRAY_OPERATIONS.EDIT_AT, {
+			arrayHandler(value, ARRAY_OPERATION.EDIT_AT, {
 				index,
 				newValue,
 			})
@@ -64,7 +45,7 @@ const FancySectionList = ({
 					text="ADD"
 					onClick={() =>
 						onChangeHandler(
-							arrayHandler(value, ARRAY_OPERATIONS.ADD, { newValue: getNew() })
+							arrayHandler(value, ARRAY_OPERATION.ADD, { newValue: getNew() })
 						)
 					}
 				/>
