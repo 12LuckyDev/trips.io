@@ -14,19 +14,10 @@ const FancySectionList = ({
 	getNew = defaultGetNew,
 	...panelProps
 }) => {
-	const onChangeHandler = (newValue) => {
+	const onChangeHandler = (operation, args = {}) => {
 		if (isFunc(onChange)) {
-			onChange(newValue, name);
+			onChange(arrayHandler(value, operation, args), name);
 		}
-	};
-
-	const onSectionChangeHandler = (newValue, index) => {
-		onChangeHandler(
-			arrayHandler(value, ARRAY_OPERATION.EDIT_AT, {
-				index,
-				newValue,
-			})
-		);
 	};
 
 	return (
@@ -36,7 +27,9 @@ const FancySectionList = ({
 					key={v[keyPropName]}
 					value={v}
 					index={i}
-					onChange={onSectionChangeHandler}
+					onChange={onChangeHandler}
+					first={i === 0}
+					last={i === value.length - 1}
 					{...panelProps}
 				/>
 			))}
@@ -44,9 +37,7 @@ const FancySectionList = ({
 				<FancyButton
 					text="ADD"
 					onClick={() =>
-						onChangeHandler(
-							arrayHandler(value, ARRAY_OPERATION.ADD, { newValue: getNew() })
-						)
+						onChangeHandler(ARRAY_OPERATION.ADD, { newValue: getNew() })
 					}
 				/>
 			}

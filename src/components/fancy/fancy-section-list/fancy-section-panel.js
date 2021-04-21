@@ -1,12 +1,9 @@
 import React from "react";
-import { FancyFormField } from "@fancy-components";
+import { FancyFormField, FancyButton } from "@fancy-components";
 import { FIELD_TYPES } from "@consts";
 import { isArray, isFunc } from "@12luckydev/utils";
-import { Column } from "@styled-components";
-
-// TODO
-// move up/down
-// delete
+import { Column, Row } from "@styled-components";
+import { ARRAY_OPERATION } from "@12luckydev/array-handler";
 
 const FancySectionPanel = ({
 	options,
@@ -18,9 +15,14 @@ const FancySectionPanel = ({
 	componentProps,
 	keepFieldsKeys,
 	sectionsConfig,
+	first,
+	last,
 }) => {
-	const onChangeHandler = (value) => {
-		onChange(value, index);
+	const onChangeHandler = (newValue) => {
+		onChange(ARRAY_OPERATION.EDIT_AT, {
+			index,
+			newValue,
+		});
 	};
 
 	const type = value[typePropName];
@@ -48,6 +50,22 @@ const FancySectionPanel = ({
 
 	return (
 		<Column border>
+			<Row reverse>
+				<FancyButton
+					text="DELETE SECTION"
+					onClick={() => onChange(ARRAY_OPERATION.REMOVE_AT, { index })}
+				/>
+				<FancyButton
+					text="MOVE DOWN"
+					onClick={() => onChange(ARRAY_OPERATION.MOVE_UP, { index })}
+					disabled={last}
+				/>
+				<FancyButton
+					text="MOVE UP"
+					onClick={() => onChange(ARRAY_OPERATION.MOVE_DOWN, { index })}
+					disabled={first}
+				/>
+			</Row>
 			{isArray(options, false) && (
 				<FancyFormField
 					type={FIELD_TYPES.SELECT}
