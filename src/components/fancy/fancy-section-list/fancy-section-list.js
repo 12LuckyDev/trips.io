@@ -2,7 +2,7 @@ import React from "react";
 import { FancyButton } from "@fancy-components";
 import { isArray, isFunc, isObject } from "@12luckydev/utils";
 import arrayHandler, { ARRAY_OPERATION } from "@12luckydev/array-handler";
-import { getId } from "@utils";
+import { getId, optionsFilter } from "@utils";
 import FancySectionPanel from "./fancy-section-panel";
 import FancySectionSelect from "./fancy-section-select";
 
@@ -36,7 +36,7 @@ const FancySectionList = ({
 					onChange={onChangeHandler}
 					first={i === 0}
 					last={i === value.length - 1}
-					options={options}
+					options={optionsFilter(options, value, typePropName, i)}
 					sectionsConfig={sectionsConfig}
 					keepFieldsKeys={keepFieldsKeys}
 					typePropName={typePropName}
@@ -46,7 +46,7 @@ const FancySectionList = ({
 			{isArray(options, false) && isObject(sectionsConfig, false) ? (
 				<FancySectionSelect
 					labelText={"New section type"}
-					options={options}
+					options={optionsFilter(options, value, typePropName)}
 					sectionsConfig={sectionsConfig}
 					keepFieldsKeys={keepFieldsKeys}
 					typePropName={typePropName}
