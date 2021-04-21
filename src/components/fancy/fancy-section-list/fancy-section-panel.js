@@ -1,9 +1,9 @@
 import React from "react";
-import { FancyFormField, FancyButton } from "@fancy-components";
-import { FIELD_TYPES } from "@consts";
-import { isArray, isFunc } from "@12luckydev/utils";
+import { FancyButton } from "@fancy-components";
+import { isArray } from "@12luckydev/utils";
 import { Column, Row, Header } from "@styled-components";
 import { ARRAY_OPERATION } from "@12luckydev/array-handler";
+import FancySectionSelect from "./fancy-section-select";
 
 const FancySectionPanel = ({
 	options,
@@ -32,23 +32,6 @@ const FancySectionPanel = ({
 		? sectionConfig.component
 		: component || null;
 
-	const onTypeChangeHandler = (propValue, propName) => {
-		const newSectionConfig = sectionsConfig && sectionsConfig[propValue];
-		if (!newSectionConfig?.fillModel && !keepFieldsKeys) {
-			onChangeHandler({ ...value, [propName]: propValue });
-		} else {
-			let newValue = isFunc(newSectionConfig?.fillModel)
-				? newSectionConfig.fillModel()
-				: {};
-
-			if (isArray(keepFieldsKeys, false)) {
-				keepFieldsKeys.forEach((key) => (newValue[key] = value[key]));
-			}
-
-			onChangeHandler({ ...newValue, [propName]: propValue });
-		}
-	};
-
 	return (
 		<Column border>
 			<Row reverse>
@@ -71,12 +54,13 @@ const FancySectionPanel = ({
 				</Header>
 			</Row>
 			{isArray(options, false) && (
-				<FancyFormField
-					type={FIELD_TYPES.SELECT}
-					data={options}
-					value={type}
-					name={typePropName}
-					onChange={onTypeChangeHandler}
+				<FancySectionSelect
+					options={options}
+					value={value}
+					typePropName={typePropName}
+					onChange={onChangeHandler}
+					sectionsConfig={sectionsConfig}
+					keepFieldsKeys={keepFieldsKeys}
 				/>
 			)}
 			{SectionComponent && (
