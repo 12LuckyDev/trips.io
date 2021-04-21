@@ -18,11 +18,12 @@ const FancySectionList = ({
 	options,
 	sectionsConfig,
 	keepFieldsKeys,
+	arrayChangeHandler,
 	...panelProps
 }) => {
 	const onChangeHandler = (operation, args = {}) => {
 		if (isFunc(onChange)) {
-			onChange(arrayHandler(value, operation, args), name);
+			onChange(arrayHandler(value, operation, args, arrayChangeHandler), name);
 		}
 	};
 

@@ -3,7 +3,7 @@ import { createImage, deleteImage } from "@services";
 
 // TODO move to new utils lib
 
-const getDimensions = async (uri) => {
+const getDimensions = (uri) => {
 	return new Promise((resolve) => {
 		const img = document.createElement("img");
 		img.src = uri;

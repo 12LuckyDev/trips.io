@@ -42,6 +42,21 @@ const getFieldPropsHelper = (
 	let customProps = null;
 
 	switch (type) {
+		case FIELD_TYPES.SECTIONS_LIST:
+			return {
+				...defaultProps,
+				value: model[name],
+				component,
+				getNew,
+				arrayChangeHandler,
+				onChange: (newValue, propName) =>
+					onModelChange(
+						modelChangeHelper(FORM_ACTIONS.VALUE_CHANGE, model, {
+							name: propName,
+							value: newValue,
+						})
+					),
+			};
 		case FIELD_TYPES.ARRAY:
 			return {
 				...defaultProps,

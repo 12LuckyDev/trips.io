@@ -49,9 +49,11 @@ const FancySectionPanel = ({
 					onClick={() => onChange(ARRAY_OPERATION.MOVE_DOWN, { index })}
 					disabled={first}
 				/>
-				<Header>
-					{sectionLabel} {" Section: "} {type}
-				</Header>
+				{sectionLabel && (
+					<Header>
+						{sectionLabel} {" Section: "} {type}
+					</Header>
+				)}
 			</Row>
 			{isArray(options, false) && (
 				<FancySectionSelect

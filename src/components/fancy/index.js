@@ -23,3 +23,4 @@ export { default as FancyRatioWrapper } from "./fancy-ratio-wrapper";
 export { default as FancyShiftable } from "./fancy-shiftable";
 export { default as FancyFileInput } from "./fancy-file-input";
 export { default as FancySectionList } from "./fancy-section-list/fancy-section-list";
+export { default as FancyFormFieldsList } from "./fancy-form-fields-list";

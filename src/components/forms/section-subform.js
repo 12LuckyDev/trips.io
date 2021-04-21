@@ -1,6 +1,5 @@
 import React from "react";
 import { FancyFormField } from "@fancy-components";
-import { Column } from "@styled-components";
 import {
 	FIELD_TYPES,
 	SECTION_OPTIONS,
@@ -29,7 +28,7 @@ const SectionSubform = ({ onChange, model }) => {
 	const { getFieldProps } = useSubform({ model, onChange });
 
 	return (
-		<Column border>
+		<>
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
 				data={SECTION_OPTIONS}
@@ -44,7 +43,7 @@ const SectionSubform = ({ onChange, model }) => {
 					onChange={onChange}
 				/>
 			)}
-		</Column>
+		</>
 	);
 };
 
