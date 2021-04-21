@@ -12,3 +12,4 @@ export { default as StyledIcoButton } from "./styled-ico-button";
 export { default as Row } from "./row";
 export { default as Column } from "./column";
 export { default as FormRow } from "./form-row";
+export { default as Header } from "./header";

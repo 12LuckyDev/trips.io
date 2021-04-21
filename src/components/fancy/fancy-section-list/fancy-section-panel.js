@@ -2,7 +2,7 @@ import React from "react";
 import { FancyFormField, FancyButton } from "@fancy-components";
 import { FIELD_TYPES } from "@consts";
 import { isArray, isFunc } from "@12luckydev/utils";
-import { Column, Row } from "@styled-components";
+import { Column, Row, Header } from "@styled-components";
 import { ARRAY_OPERATION } from "@12luckydev/array-handler";
 
 const FancySectionPanel = ({
@@ -10,13 +10,14 @@ const FancySectionPanel = ({
 	value,
 	typePropName,
 	index,
+	first,
+	last,
 	onChange,
 	component,
 	componentProps,
 	keepFieldsKeys,
 	sectionsConfig,
-	first,
-	last,
+	sectionLabel,
 }) => {
 	const onChangeHandler = (newValue) => {
 		onChange(ARRAY_OPERATION.EDIT_AT, {
@@ -65,6 +66,9 @@ const FancySectionPanel = ({
 					onClick={() => onChange(ARRAY_OPERATION.MOVE_DOWN, { index })}
 					disabled={first}
 				/>
+				<Header>
+					{sectionLabel} {" Section: "} {type}
+				</Header>
 			</Row>
 			{isArray(options, false) && (
 				<FancyFormField

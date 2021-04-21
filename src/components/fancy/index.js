@@ -4,6 +4,7 @@ export { default as FancyBoxTitle } from "./fancy-box/fancy-box-title";
 export { default as FancyBoxText } from "./fancy-box/fancy-box-text";
 
 export * from "./fancy-ico-button";
+export * from "./fancy-text";
 
 export { default as FancyForm } from "./fancy-form";
 export { default as FancyInput } from "./fancy-input";

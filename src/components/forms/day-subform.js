@@ -18,6 +18,12 @@ const DaySubform = ({ model, getFieldProps, onChange }) => {
 		onChange({ ...model, [name]: value });
 	};
 
+	const dayLabel = `Day: ${day}${
+		dayFormType === DAY_FORM_TYPES.RANGE && daysAmount !== null
+			? ` - ${day + daysAmount}`
+			: ""
+	}`;
+
 	return (
 		<>
 			<FancyFormField
@@ -35,16 +41,14 @@ const DaySubform = ({ model, getFieldProps, onChange }) => {
 					})}
 				/>
 			)}
-			Day: {day}{" "}
-			{dayFormType === DAY_FORM_TYPES.RANGE &&
-				daysAmount !== null &&
-				`- ${day + daysAmount}`}
+			{dayLabel}
 			<FancySectionList
 				name="info"
 				typePropName="dayInfoType"
 				onChange={onChangeHandler}
 				options={DAY_INFO_OPTIONS}
 				value={info}
+				sectionLabel={dayLabel}
 				{...sectionListConfig}
 			/>
 		</>
