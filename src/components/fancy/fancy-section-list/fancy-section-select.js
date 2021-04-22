@@ -37,7 +37,7 @@ const FancySectionSelect = ({
 		<FancyFormField
 			labelText={labelText}
 			type={FIELD_TYPES.SELECT}
-			data={options}
+			options={options}
 			value={type}
 			onChange={onChangeHandler}
 		/>

@@ -31,7 +31,7 @@ const DaySubform = ({ model, onChange }) => {
 			<FancyFormField
 				{...getFieldProps("dayFormType", {
 					type: FIELD_TYPES.SELECT,
-					data: DAY_FORM_OPTIONS,
+					options: DAY_FORM_OPTIONS,
 					changeHandler: dayFormTypeChangeHandler,
 				})}
 			/>

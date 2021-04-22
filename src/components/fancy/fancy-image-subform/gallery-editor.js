@@ -39,7 +39,7 @@ const GalleryEditor = ({ onChange, img, galleryType, largest }) => {
 		<>
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
-				data={GALLERY_DISPLAY_OPTIONS}
+				options={GALLERY_DISPLAY_OPTIONS}
 				value={galleryType}
 				name={"galleryType"}
 				onChange={onChange}

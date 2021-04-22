@@ -17,7 +17,6 @@ const getFieldPropsHelper = (
 		component,
 		getNew,
 		modelPropName = "model",
-		data = [],
 		idKey,
 		nameKey,
 		arrayChangeHandler,
@@ -110,7 +109,7 @@ const getFieldPropsHelper = (
 			};
 		case FIELD_TYPES.SELECT:
 			customProps = {
-				data,
+				options,
 				idKey,
 				nameKey,
 			};

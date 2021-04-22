@@ -32,7 +32,7 @@ const ImageAndTextEditor = ({ img, onChange, width, side }) => {
 		<>
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
-				data={DIRECTION_OPTIONS}
+				options={DIRECTION_OPTIONS}
 				value={side}
 				name={"side"}
 				onChange={onChange}

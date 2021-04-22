@@ -81,7 +81,7 @@ const FancyImageSubform = ({ model, onChange, name }) => {
 		<Column>
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
-				data={IMAGE_FORM_OPTIONS}
+				options={IMAGE_FORM_OPTIONS}
 				value={type}
 				name={"type"}
 				onChange={onChangeHandler}
