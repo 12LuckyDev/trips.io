@@ -17,7 +17,7 @@ const FancySectionList = ({
 	typePropName,
 	options,
 	sectionsConfig,
-	keepFieldsKeys,
+	keepFieldsKeys = ["id"],
 	arrayChangeHandler,
 	...panelProps
 }) => {

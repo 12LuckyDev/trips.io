@@ -2,6 +2,8 @@ import { isFunc } from "@12luckydev/utils";
 import { FIELD_TYPES, FORM_ACTIONS } from "@consts";
 import modelChangeHelper from "./model-change-helper";
 
+// TODO simplify this
+
 const getFieldPropsHelper = (
 	fieldData = {},
 	onModelChange,
@@ -24,6 +26,10 @@ const getFieldPropsHelper = (
 		inputType = "text",
 		getDefault,
 		valuePropName = "value",
+		sectionsConfig,
+		keepFieldsKeys,
+		options,
+		typePropName,
 	} = fieldData;
 	let defaultProps = { name };
 
@@ -49,6 +55,10 @@ const getFieldPropsHelper = (
 				component,
 				getNew,
 				arrayChangeHandler,
+				sectionsConfig,
+				keepFieldsKeys,
+				options,
+				typePropName,
 				onChange: (newValue, propName) =>
 					onModelChange(
 						modelChangeHelper(FORM_ACTIONS.VALUE_CHANGE, model, {

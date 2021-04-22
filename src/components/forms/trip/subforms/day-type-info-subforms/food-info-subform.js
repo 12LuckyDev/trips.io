@@ -1,6 +1,6 @@
 import React from "react";
 
-const FoodInfoSubForm = ({}) => {
+const FoodInfoSubForm = () => {
 	return <></>;
 };
 

@@ -1,17 +1,19 @@
 import React from "react";
+import { FancyFormField, FancySectionList } from "@fancy-components";
+import sectionsConfig from "./day-type-info-subforms";
+import { useSubform } from "@hooks";
 import {
 	FIELD_TYPES,
 	DAY_FORM_TYPES,
 	DAY_FORM_OPTIONS,
 	DAY_INFO_OPTIONS,
 } from "@consts";
-import { FancyFormField, FancySectionList } from "@fancy-components";
-import sectionListConfig from "./day-type-info-subforms";
 
 const dayFormTypeChangeHandler = (value) =>
 	value === DAY_FORM_TYPES.RANGE ? { daysAmount: 1 } : { daysAmount: null };
 
-const DaySubform = ({ model, getFieldProps, onChange }) => {
+const DaySubform = ({ model, onChange }) => {
+	const { getFieldProps } = useSubform({ model, onChange });
 	const { dayFormType, day, daysAmount, info } = model;
 
 	const onChangeHandler = (value, name) => {
@@ -49,7 +51,7 @@ const DaySubform = ({ model, getFieldProps, onChange }) => {
 				options={DAY_INFO_OPTIONS}
 				value={info}
 				sectionLabel={dayLabel}
-				{...sectionListConfig}
+				sectionsConfig={sectionsConfig}
 			/>
 		</>
 	);

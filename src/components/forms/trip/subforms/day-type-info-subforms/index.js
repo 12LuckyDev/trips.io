@@ -17,8 +17,4 @@ const sectionsConfig = {
 	[DAY_INFO_TYPES.FOOD]: { component: FoodInfoSubForm },
 };
 
-const keepFieldsKeys = ["id"];
-
-const sectionListConfig = { sectionsConfig, keepFieldsKeys };
-
-export default sectionListConfig;
+export default sectionsConfig;
