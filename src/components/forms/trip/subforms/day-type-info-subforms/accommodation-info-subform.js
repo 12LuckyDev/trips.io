@@ -47,7 +47,7 @@ const AccommodationInfoSubform = ({ model, onChange }) => {
 			<FancyFormField
 				{...getFieldProps("meals", {
 					type: FIELD_TYPES.SELECT,
-					data: ACCOMMODATION_MEALS_OPTIONS,
+					options: ACCOMMODATION_MEALS_OPTIONS,
 					labelText: "Meals",
 				})}
 			/>
