@@ -14,7 +14,6 @@ const AccommodationInfoSubform = ({ model, onChange }) => {
 		<>
 			<FancyImageSubform
 				{...getFieldProps("images", {
-					type: FIELD_TYPES.CUSTOM_OBJECT,
 					valuePropName: "model",
 					getDefault: () => ({
 						type: IMAGE_FORM_TYPES.SINGLE,

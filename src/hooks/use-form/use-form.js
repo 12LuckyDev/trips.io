@@ -1,5 +1,5 @@
-import { useReducer, useCallback } from "react";
-import { FIELD_TYPES, HOOK_ACTIONS } from "@consts";
+import { useState } from "react";
+import { FIELD_TYPES } from "@consts";
 import getFieldPropsHelper from "./helpers/field-props-helper";
 
 /**
@@ -8,65 +8,35 @@ import getFieldPropsHelper from "./helpers/field-props-helper";
  * - map array to object (in utils)
  */
 
-/**
- * REMEMBER
- * - globalOnChange always has one arg, if onChange is on model Component should know what arg are
- */
-
-const getInitialState = (formConfig) => {
-	let state = {};
+const getInitialModel = (formConfig, initialModel) => {
+	let model = { ...initialModel };
 	formConfig.forEach(({ name, type }) => {
 		switch (type) {
-			case FIELD_TYPES.ARRAY:
 			case FIELD_TYPES.SECTIONS_LIST:
-				state[name] = [];
+				model[name] = [];
+				break;
+			case FIELD_TYPES.NUMBER:
+				model[name] = null;
 				break;
 			default:
-				state[name] = "";
+				model[name] = "";
 		}
 	});
-	return state;
+	return model;
 };
 
-const formReducer = (state, action) => {
-	const { type, payload } = action;
-	switch (type) {
-		case HOOK_ACTIONS.MODEL_CHANGE:
-			return {
-				...payload,
-			};
-		case HOOK_ACTIONS.MERGE_WITH_MODEL:
-			return {
-				...state,
-				...payload,
-			};
-		default:
-			throw new Error("NO TYPE");
-	}
-};
-
-const useForm = (formConfig = [], inputsPropsType = "ARRAY", initialState) => {
-	const [state, dispatch] = useReducer(
-		formReducer,
-		initialState || getInitialState(formConfig)
-	);
-
-	const onModelChange = useCallback(
-		(newModel, mergeWithOld = true) =>
-			dispatch({
-				type: mergeWithOld
-					? HOOK_ACTIONS.MERGE_WITH_MODEL
-					: HOOK_ACTIONS.MODEL_CHANGE,
-				payload: newModel,
-			}),
-		[dispatch]
-	);
+const useForm = (
+	formConfig = [],
+	initialModel = null,
+	arrayInputsProps = true
+) => {
+	const [model, setModel] = useState(getInitialModel(formConfig, initialModel));
 
 	const inputsProps = formConfig.map((config) =>
-		getFieldPropsHelper(config, onModelChange, state)
+		getFieldPropsHelper(config, setModel, model)
 	);
 
-	return { inputsProps, state };
+	return { inputsProps, model };
 };
 
 export default useForm;

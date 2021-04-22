@@ -1,2 +1,0 @@
-export const MODEL_CHANGE = "MODEL_CHANGE";
-export const MERGE_WITH_MODEL = "MERGE_WITH_MODEL";

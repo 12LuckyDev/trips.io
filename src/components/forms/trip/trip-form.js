@@ -5,9 +5,9 @@ import { useForm } from "@hooks";
 import formConfig from "./trip-form-config";
 
 const TripFrom = ({ onSuccess }) => {
-	const { inputsProps, state } = useForm(formConfig);
+	const { inputsProps, model } = useForm(formConfig);
 	const onSubmit = () => {
-		firestore.collection("trips").add(state).then(onSuccess);
+		firestore.collection("trips").add(model).then(onSuccess);
 	};
 	return (
 		<FancyForm onSubmit={onSubmit}>

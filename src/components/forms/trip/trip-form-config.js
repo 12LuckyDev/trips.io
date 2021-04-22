@@ -8,13 +8,14 @@ import {
 } from "@consts";
 
 const sectionChangeHandler = ({ newArray, newValue, oldArray, index }) => {
-	const { sectionType, dayFormType, daysAmount } = newValue;
 	const oldValue = oldArray[index];
 	if (
 		!oldValue ||
-		sectionType !== oldValue.sectionType ||
-		dayFormType !== oldValue.dayFormType ||
-		(dayFormType === DAY_FORM_TYPES.RANGE && daysAmount !== oldValue.daysAmount)
+		!newValue ||
+		newValue.sectionType !== oldValue.sectionType ||
+		newValue.dayFormType !== oldValue.dayFormType ||
+		(newValue.dayFormType === DAY_FORM_TYPES.RANGE &&
+			newValue.daysAmount !== oldValue.daysAmount)
 	) {
 		let lastDay = 0;
 		return newArray.map((v) => {

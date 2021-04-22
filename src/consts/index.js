@@ -27,5 +27,3 @@ export { default as GALLERY_DISPLAY_OPTIONS } from "./form-options/gallery-displ
 
 // FORM HOOK
 export * as FIELD_TYPES from "./form-hook/field-types";
-export * as FORM_ACTIONS from "./form-hook/form-actions";
-export * as HOOK_ACTIONS from "./form-hook/hook-actions";

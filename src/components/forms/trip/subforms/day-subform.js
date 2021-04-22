@@ -9,8 +9,10 @@ import {
 	DAY_INFO_OPTIONS,
 } from "@consts";
 
-const dayFormTypeChangeHandler = (value) =>
-	value === DAY_FORM_TYPES.RANGE ? { daysAmount: 1 } : { daysAmount: null };
+const dayFormTypeChangeHandler = ({ newValue, newModel }) => ({
+	...newModel,
+	daysAmount: newValue === DAY_FORM_TYPES.RANGE ? 1 : null,
+});
 
 const DaySubform = ({ model, onChange }) => {
 	const { getFieldProps } = useSubform({ model, onChange });
@@ -32,7 +34,7 @@ const DaySubform = ({ model, onChange }) => {
 				{...getFieldProps("dayFormType", {
 					type: FIELD_TYPES.SELECT,
 					options: DAY_FORM_OPTIONS,
-					changeHandler: dayFormTypeChangeHandler,
+					modelChangeHandler: dayFormTypeChangeHandler,
 				})}
 			/>
 			{dayFormType === DAY_FORM_TYPES.RANGE && (
