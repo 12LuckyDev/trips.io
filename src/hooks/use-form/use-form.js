@@ -1,28 +1,15 @@
 import { useState } from "react";
-import { FIELD_TYPES } from "@consts";
 import getFieldPropsHelper from "./helpers/field-props-helper";
-
-/**
- * TODO:
- * - inputsPropsType (ARRAY, OBJECT (name is key))
- * - map array to object (in utils)
- */
+import { mapToObject, mapToObjectUsing } from "@12luckydev/utils";
+import defaultValueHelper from "./helpers/default-value-helper";
 
 const getInitialModel = (formConfig, initialModel) => {
-	let model = { ...initialModel };
-	formConfig.forEach(({ name, type }) => {
-		switch (type) {
-			case FIELD_TYPES.SECTIONS_LIST:
-				model[name] = [];
-				break;
-			case FIELD_TYPES.NUMBER:
-				model[name] = null;
-				break;
-			default:
-				model[name] = "";
-		}
-	});
-	return model;
+	return (
+		initialModel ||
+		mapToObjectUsing(formConfig, "name", ({ type }) => {
+			defaultValueHelper(type);
+		})
+	);
 };
 
 const useForm = (
@@ -36,7 +23,12 @@ const useForm = (
 		getFieldPropsHelper(config, setModel, model)
 	);
 
-	return { inputsProps, model };
+	return {
+		inputsProps: arrayInputsProps
+			? inputsProps
+			: mapToObject(inputsProps, "name", true),
+		model,
+	};
 };
 
 export default useForm;

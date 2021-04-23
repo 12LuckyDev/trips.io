@@ -1,6 +1,7 @@
 import { isFunc } from "@12luckydev/utils";
 import { FIELD_TYPES } from "@consts";
 import modelChangeHelper from "./model-change-helper";
+import defaultValueHelper from "./default-value-helper";
 
 const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 	const {
@@ -39,7 +40,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 			? model[name]
 			: isFunc(getDefault)
 			? getDefault()
-			: null,
+			: defaultValueHelper(type),
 	};
 
 	if (!!labelText) {
