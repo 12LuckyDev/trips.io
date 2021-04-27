@@ -1,20 +1,21 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "jsx": "react",
-    "paths": {
-      "@components": ["components/index"],
-      "@custom-components": ["components/custom/index"],
-      "@fancy-components": ["components/fancy/index"],
-      "@styled-components": ["components/styled/index"],
-      "@pages": ["pages/index"],
-      "@consts": ["consts/index"],
-      "@hooks": ["hooks/index"],
-      "@styles": ["styles/index"],
-      "@utils": ["utils/index"],
-      "@icons": ["icons/index"],
-      "@services": ["services/index"]
-    }
-  },
-  "exclude": ["node_modules"]
+	"compilerOptions": {
+		"baseUrl": "./src",
+		"jsx": "react",
+		"paths": {
+			"@components": ["components/index"],
+			"@custom-components": ["components/custom/index"],
+			"@fancy-components": ["components/fancy/index"],
+			"@styled-components": ["components/styled/index"],
+			"@pages": ["pages/index"],
+			"@consts": ["consts/index"],
+			"@hooks": ["hooks/index"],
+			"@styles": ["styles/index"],
+			"@utils": ["utils/index"],
+			"@icons": ["icons/index"],
+			"@services": ["services/index"],
+			"@form-configs": ["form-configs/index"]
+		}
+	},
+	"exclude": ["node_modules"]
 }
