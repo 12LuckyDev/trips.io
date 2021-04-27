@@ -31,7 +31,9 @@ const FancySectionPanel = ({
 	const SectionComponent = !!sectionConfig?.component
 		? sectionConfig.component
 		: component || null;
-
+	const sectionConponentProps = !!sectionConfig?.componentProps
+		? sectionConfig.componentProps
+		: null;
 	return (
 		<Column border>
 			<Row reverse>
@@ -70,6 +72,7 @@ const FancySectionPanel = ({
 					model={value}
 					onChange={onChangeHandler}
 					{...componentProps}
+					{...sectionConponentProps}
 				/>
 			)}
 		</Column>

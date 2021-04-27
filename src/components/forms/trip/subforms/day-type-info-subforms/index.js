@@ -1,11 +1,12 @@
-import AccommodationInfoSubform from "./accommodation-info-subform";
-import FoodInfoSubForm from "./food-info-subform";
-
 import { DAY_INFO_TYPES, ACCOMMODATION_MEALS_TYPES } from "@consts";
+import { FancySubform } from "@fancy-components";
+import accommodationConfig from "./accommodation-info-subform";
+import foodInfoConfig from "./food-info-subform";
 
 const sectionsConfig = {
 	[DAY_INFO_TYPES.ACCOMMODATION]: {
-		component: AccommodationInfoSubform,
+		component: FancySubform,
+		componentProps: { config: accommodationConfig },
 		fillModel: () => ({
 			name: "",
 			link: "",
@@ -14,7 +15,10 @@ const sectionsConfig = {
 			meals: ACCOMMODATION_MEALS_TYPES.NONE,
 		}),
 	},
-	[DAY_INFO_TYPES.FOOD]: { component: FoodInfoSubForm },
+	[DAY_INFO_TYPES.FOOD]: {
+		component: FancySubform,
+		componentProps: { config: foodInfoConfig },
+	},
 };
 
 export default sectionsConfig;

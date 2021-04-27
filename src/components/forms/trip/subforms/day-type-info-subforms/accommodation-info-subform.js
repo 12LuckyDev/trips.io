@@ -1,13 +1,11 @@
-import React from "react";
-import { FancyImageSubform, FancyFormFieldsList } from "@fancy-components";
-import { useSubform } from "@hooks";
+import { FancyImageSubform } from "@fancy-components";
 import {
 	FIELD_TYPES,
 	ACCOMMODATION_MEALS_OPTIONS,
 	IMAGE_FORM_TYPES,
 } from "@consts";
 
-const config = [
+export const accommodationConfig = [
 	{ name: "name", type: FIELD_TYPES.TEXT, labelText: "Name" },
 	{ name: "link", type: FIELD_TYPES.TEXT, labelText: "Accommodation homepage" },
 	{ name: "price", type: FIELD_TYPES.NUMBER, labelText: "Accommodation price" },
@@ -39,12 +37,4 @@ const config = [
 	},
 ];
 
-const AccommodationInfoSubform = ({ model, onChange }) => {
-	const { inputsProps } = useSubform(model, onChange, {
-		config,
-	});
-
-	return <FancyFormFieldsList data={inputsProps} />;
-};
-
-export default AccommodationInfoSubform;
+export default accommodationConfig;

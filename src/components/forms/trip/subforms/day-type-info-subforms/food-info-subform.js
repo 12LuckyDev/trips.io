@@ -1,7 +1,3 @@
-import React from "react";
+const foodInfoConfig = [];
 
-const FoodInfoSubForm = () => {
-	return <></>;
-};
-
-export default FoodInfoSubForm;
+export default foodInfoConfig;

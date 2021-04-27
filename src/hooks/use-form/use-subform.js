@@ -21,7 +21,7 @@ const useSubform = (model, onChange, { config, subName } = {}) => {
 
 	const inputsProps = isArray(config, false)
 		? config.map((c) => getFieldPropsHelper(c, onChangeCallback, model))
-		: null;
+		: [];
 
 	return { getFieldProps, inputsProps };
 };
