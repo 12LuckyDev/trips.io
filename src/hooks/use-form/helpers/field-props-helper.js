@@ -70,7 +70,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 				inputType,
 			};
 		default:
-			return defaultProps;
+			return !type ? { ...defaultProps, component } : defaultProps;
 	}
 };
 

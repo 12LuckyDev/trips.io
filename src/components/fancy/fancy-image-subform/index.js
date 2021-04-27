@@ -10,7 +10,7 @@ import {
 import GalleryEditor from "./gallery-editor";
 import ImageAndTextEditor from "./image-and-text-editor";
 import { popByIndex } from "@12luckydev/utils";
-import { FancyFormField } from "@fancy-components";
+import { FancyFormField, FancyLabel } from "@fancy-components";
 import { revokeUrisIfExist, fillImagesUrls } from "@utils";
 import SingleImageEditor from "./single-image-editor";
 import FancyImageInput from "./fancy-image-input";
@@ -65,7 +65,7 @@ const modelHandler = (model, value, name) => {
 	}
 };
 
-const FancyImageSubform = ({ model, onChange, name }) => {
+const FancyImageSubform = ({ model, onChange, name, labelText }) => {
 	const { type, img, width, galleryType, largest, side } = model;
 	const multiple = type === IMAGE_FORM_TYPES.GALLERY;
 
@@ -79,6 +79,7 @@ const FancyImageSubform = ({ model, onChange, name }) => {
 
 	return (
 		<Column>
+			{labelText && <FancyLabel labelText={labelText} />}
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
 				options={IMAGE_FORM_OPTIONS}

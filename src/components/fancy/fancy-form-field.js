@@ -23,7 +23,9 @@ const renderComponent = (type, fieldProps) => {
 
 const FancyFormField = ({ type, component: Component, ...fieldProps }) => {
 	return !type ? (
-		<Component {...fieldProps} />
+		<FormRow>
+			<Component {...fieldProps} />
+		</FormRow>
 	) : type === FIELD_TYPES.SECTIONS_LIST ? (
 		<FancySectionList component={Component} {...fieldProps} />
 	) : (

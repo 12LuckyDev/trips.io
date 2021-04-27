@@ -15,7 +15,7 @@ const dayFormTypeChangeHandler = ({ newValue, newModel }) => ({
 });
 
 const DaySubform = ({ model, onChange }) => {
-	const { getFieldProps } = useSubform({ model, onChange });
+	const { getFieldProps } = useSubform(model, onChange);
 	const { dayFormType, day, daysAmount, info } = model;
 
 	const onChangeHandler = (value, name) => {
