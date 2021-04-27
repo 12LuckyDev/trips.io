@@ -19,6 +19,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 		sectionsConfig,
 		keepFieldsKeys,
 		typePropName,
+		sectionLabel,
 		// SECTIONS_LIST && SELECT
 		options,
 		// TEXT
@@ -58,6 +59,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 				keepFieldsKeys,
 				typePropName,
 				options,
+				sectionLabel,
 			};
 		case FIELD_TYPES.SELECT:
 			return {

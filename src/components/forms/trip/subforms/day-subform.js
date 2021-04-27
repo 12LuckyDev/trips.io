@@ -16,11 +16,7 @@ const dayFormTypeChangeHandler = ({ newValue, newModel }) => ({
 
 const DaySubform = ({ model, onChange }) => {
 	const { getFieldProps } = useSubform(model, onChange);
-	const { dayFormType, day, daysAmount, info } = model;
-
-	const onChangeHandler = (value, name) => {
-		onChange({ ...model, [name]: value });
-	};
+	const { dayFormType, day, daysAmount } = model;
 
 	const dayLabel = `Day: ${day}${
 		dayFormType === DAY_FORM_TYPES.RANGE && daysAmount !== null
@@ -47,13 +43,13 @@ const DaySubform = ({ model, onChange }) => {
 			)}
 			{dayLabel}
 			<FancySectionList
-				name="info"
-				typePropName="dayInfoType"
-				onChange={onChangeHandler}
-				options={DAY_INFO_OPTIONS}
-				value={info}
-				sectionLabel={dayLabel}
-				sectionsConfig={sectionsConfig}
+				{...getFieldProps("info", {
+					type: FIELD_TYPES.SECTIONS_LIST,
+					typePropName: "dayInfoType",
+					options: DAY_INFO_OPTIONS,
+					sectionLabel: dayLabel,
+					sectionsConfig: sectionsConfig,
+				})}
 			/>
 		</>
 	);
