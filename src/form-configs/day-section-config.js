@@ -1,9 +1,9 @@
 import { DAY_INFO_TYPES, ACCOMMODATION_MEALS_TYPES } from "@consts";
 import { FancySubform } from "@fancy-components";
-import accommodationConfig from "./accommodation-info-subform";
-import foodInfoConfig from "./food-info-subform";
+import accommodationConfig from "./accommodation-info-config";
+import foodInfoConfig from "./food-info-config";
 
-const sectionsConfig = {
+const daySectionsConfig = {
 	[DAY_INFO_TYPES.ACCOMMODATION]: {
 		component: FancySubform,
 		componentProps: { config: accommodationConfig },
@@ -21,4 +21,4 @@ const sectionsConfig = {
 	},
 };
 
-export default sectionsConfig;
+export default daySectionsConfig;

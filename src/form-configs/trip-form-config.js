@@ -1,5 +1,4 @@
-import InfoSubform from "./subforms/info-subform";
-import DaySubform from "./subforms/day-subform";
+import { InfoSubform, DaySubform } from "@components";
 import {
 	FIELD_TYPES,
 	SECTION_TYPES,
@@ -57,7 +56,7 @@ const sectionsConfig = {
 	},
 };
 
-const formConfig = [
+const tripFormConfig = [
 	{ name: "title", type: FIELD_TYPES.TEXT, labelText: "Trip title" },
 	{
 		name: "text",
@@ -75,4 +74,4 @@ const formConfig = [
 	},
 ];
 
-export default formConfig;
+export default tripFormConfig;

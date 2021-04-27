@@ -1,6 +1,6 @@
 import React from "react";
 import { FancyFormField, FancySectionList } from "@fancy-components";
-import sectionsConfig from "./day-type-info-subforms";
+import { daySectionsConfig } from "@form-configs";
 import { useSubform } from "@hooks";
 import {
 	FIELD_TYPES,
@@ -48,7 +48,7 @@ const DaySubform = ({ model, onChange }) => {
 					typePropName: "dayInfoType",
 					options: DAY_INFO_OPTIONS,
 					sectionLabel: dayLabel,
-					sectionsConfig: sectionsConfig,
+					sectionsConfig: daySectionsConfig,
 				})}
 			/>
 		</>
