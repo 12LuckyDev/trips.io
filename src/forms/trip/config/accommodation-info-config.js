@@ -1,6 +1,8 @@
 import { FIELD_TYPES, ACCOMMODATION_MEALS_OPTIONS } from "@consts";
 import imagesConfig from "./common/images-config";
+import * as types from "consts";
 
+console.log(types);
 export const accommodationConfig = [
 	{ name: "name", type: FIELD_TYPES.TEXT, labelText: "Name" },
 	{ name: "link", type: FIELD_TYPES.TEXT, labelText: "Accommodation homepage" },

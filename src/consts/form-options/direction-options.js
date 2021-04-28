@@ -5,4 +5,4 @@ const DIRECTION_OPTIONS = [
 	{ id: DIRECTION_TYPES.RIGHT, name: "Right" },
 ];
 
-export default DIRECTION_OPTIONS;
+export { DIRECTION_OPTIONS, DIRECTION_TYPES };

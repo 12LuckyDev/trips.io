@@ -1,10 +1,12 @@
-import { InfoSubform, DaySubform } from "@components";
 import {
 	FIELD_TYPES,
 	SECTION_TYPES,
 	SECTION_OPTIONS,
 	DAY_FORM_TYPES,
 } from "@consts";
+
+import InfoSubform from "../subforms/info-subform";
+import DaySubform from "../subforms/day-subform";
 
 const sectionChangeHandler = ({ newArray, newValue, oldArray, index }) => {
 	const oldValue = oldArray[index];

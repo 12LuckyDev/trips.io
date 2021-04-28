@@ -1,6 +1,6 @@
 import React from "react";
 import { FancyFormField, FancySectionList } from "@fancy-components";
-import { daySectionsConfig } from "@form-configs";
+import daySectionsConfig from "../config/day-section-config";
 import { useSubform } from "@hooks";
 import {
 	FIELD_TYPES,

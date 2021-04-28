@@ -11,7 +11,7 @@ const aliases = (prefix = "./src/") => ({
 	"@utils": `${prefix}utils`,
 	"@icons": `${prefix}icons`,
 	"@services": `${prefix}services`,
-	"@form-configs": `${prefix}form-configs`,
+	"@forms": `${prefix}forms`,
 });
 
 module.exports = aliases;

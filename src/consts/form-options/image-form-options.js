@@ -6,4 +6,4 @@ const IMAGE_FORM_OPTIONS = [
 	{ id: IMAGE_FORM_TYPES.WITH_TEXT, name: "Image with text" },
 ];
 
-export default IMAGE_FORM_OPTIONS;
+export { IMAGE_FORM_OPTIONS, IMAGE_FORM_TYPES };

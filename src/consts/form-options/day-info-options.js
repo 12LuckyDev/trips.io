@@ -8,4 +8,4 @@ const DAY_INFO_OPTIONS = [
 	{ id: DAY_INFO_TYPES.TRANSPORT, name: "Transport" },
 ];
 
-export default DAY_INFO_OPTIONS;
+export { DAY_INFO_OPTIONS, DAY_INFO_TYPES };

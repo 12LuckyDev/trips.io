@@ -14,7 +14,7 @@
 			"@utils": ["utils/index"],
 			"@icons": ["icons/index"],
 			"@services": ["services/index"],
-			"@form-configs": ["form-configs/index"]
+			"@forms": ["forms/index"]
 		}
 	},
 	"exclude": ["node_modules"]

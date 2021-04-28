@@ -2,9 +2,9 @@ import React from "react";
 import { FancyForm, FancyFormFieldsList } from "@fancy-components";
 import { firestore } from "@services";
 import { useForm } from "@hooks";
-import { tripFormConfig } from "@form-configs";
+import tripFormConfig from "./config/trip-form-config";
 
-const TripFrom = ({ onSuccess }) => {
+const TripForm = ({ onSuccess }) => {
 	const { inputsProps, model } = useForm(tripFormConfig);
 	const onSubmit = () => {
 		firestore.collection("trips").add(model).then(onSuccess);
@@ -16,4 +16,4 @@ const TripFrom = ({ onSuccess }) => {
 	);
 };
 
-export default TripFrom;
+export default TripForm;
