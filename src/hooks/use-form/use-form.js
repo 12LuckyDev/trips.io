@@ -4,12 +4,13 @@ import { mapToObject, mapToObjectUsing } from "@12luckydev/utils";
 import defaultValueHelper from "./helpers/default-value-helper";
 
 const getInitialModel = (formConfig, initialModel) => {
-	return (
+	const model =
 		initialModel ||
-		mapToObjectUsing(formConfig, "name", ({ type }) => {
-			defaultValueHelper(type);
-		})
-	);
+		mapToObjectUsing(formConfig, "name", ({ type }) =>
+			defaultValueHelper(type)
+		);
+
+	return model;
 };
 
 const useForm = (
