@@ -59,11 +59,10 @@ const sectionsConfig = {
 };
 
 const tripFormConfig = [
-	{ name: "title", type: FIELD_TYPES.TEXT, labelText: "Trip title" },
+	{ name: "title", type: FIELD_TYPES.TEXT },
 	{
 		name: "text",
 		type: FIELD_TYPES.TEXT,
-		labelText: "Trip description",
 		inputType: "textarea",
 	},
 	{

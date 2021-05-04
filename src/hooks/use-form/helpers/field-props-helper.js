@@ -3,7 +3,12 @@ import { FIELD_TYPES } from "@consts";
 import modelChangeHelper from "./model-change-helper";
 import defaultValueHelper from "./default-value-helper";
 
-const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
+const getFieldPropsHelper = (
+	fieldData = {},
+	onModelChange,
+	model = {},
+	{ namespace } = {}
+) => {
 	const {
 		// COMMON
 		type,
@@ -12,6 +17,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 		valuePropName = "value",
 		modelChangeHandler,
 		getDefault,
+		namespace: fieldNamespace,
 		// SECTIONS_LIST
 		component,
 		getNew,
@@ -29,6 +35,7 @@ const getFieldPropsHelper = (fieldData = {}, onModelChange, model = {}) => {
 	let defaultProps = {
 		name,
 		type,
+		namespace: fieldNamespace || namespace,
 		onChange: (newValue, propName) =>
 			onModelChange(
 				modelChangeHelper(model, {

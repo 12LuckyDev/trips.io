@@ -5,7 +5,7 @@ import { useForm } from "@hooks";
 import tripFormConfig from "./config/trip-form-config";
 
 const TripForm = ({ onSuccess }) => {
-	const { inputsProps, model } = useForm(tripFormConfig);
+	const { inputsProps, model } = useForm(tripFormConfig, { namespace: "trip" });
 	const onSubmit = () => {
 		firestore.collection("trips").add(model).then(onSuccess);
 	};

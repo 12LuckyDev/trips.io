@@ -1,3 +1,5 @@
 {
-	"name": "Name"
+	"title": "Trips title",
+	"text": "Trip description",
+	"sections": "New section type"
 }

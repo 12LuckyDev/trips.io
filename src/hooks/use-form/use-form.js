@@ -15,13 +15,12 @@ const getInitialModel = (formConfig, initialModel) => {
 
 const useForm = (
 	formConfig = [],
-	initialModel = null,
-	arrayInputsProps = true
+	{ initialModel = null, arrayInputsProps = true, namespace } = {}
 ) => {
 	const [model, setModel] = useState(getInitialModel(formConfig, initialModel));
 
 	const inputsProps = formConfig.map((config) =>
-		getFieldPropsHelper(config, setModel, model)
+		getFieldPropsHelper(config, setModel, model, { namespace })
 	);
 
 	return {
