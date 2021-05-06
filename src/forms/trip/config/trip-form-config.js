@@ -72,6 +72,7 @@ const tripFormConfig = [
 		typePropName: "sectionType",
 		arrayChangeHandler: sectionChangeHandler,
 		sectionsConfig,
+		passNamespace: false,
 	},
 ];
 

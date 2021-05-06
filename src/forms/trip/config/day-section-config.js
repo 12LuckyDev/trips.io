@@ -9,7 +9,7 @@ import trailsInfoConfig from "./trails-info-config";
 const daySectionsConfig = {
 	[DAY_INFO_TYPES.ACCOMMODATION]: {
 		component: FancySubform,
-		componentProps: { config: accommodationConfig },
+		componentProps: { config: accommodationConfig, namespace: "accommodation" },
 		fillModel: () => ({
 			name: "",
 			link: "",
@@ -20,19 +20,19 @@ const daySectionsConfig = {
 	},
 	[DAY_INFO_TYPES.FOOD]: {
 		component: FancySubform,
-		componentProps: { config: foodInfoConfig },
+		componentProps: { config: foodInfoConfig, namespace: "food" },
 	},
 	[DAY_INFO_TYPES.TRANSPORT]: {
 		component: FancySubform,
-		componentProps: { config: transportInfoConfig },
+		componentProps: { config: transportInfoConfig, namespace: "transport" },
 	},
 	[DAY_INFO_TYPES.SIGHTSEEING]: {
 		component: FancySubform,
-		componentProps: { config: sightseeingInfoConfig },
+		componentProps: { config: sightseeingInfoConfig, namespace: "sightseeing" },
 	},
 	[DAY_INFO_TYPES.TRAILS]: {
 		component: FancySubform,
-		componentProps: { config: trailsInfoConfig },
+		componentProps: { config: trailsInfoConfig, namespace: "trails" },
 	},
 };
 

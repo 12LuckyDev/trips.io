@@ -4,11 +4,9 @@ import { PageRouter } from "@components";
 import { PAGES_CONFIG } from "@consts";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@services";
-import { useTranslation } from "react-i18next";
 
 const App = () => {
 	const [user] = useAuthState(auth);
-	const { t, i18n } = useTranslation();
 
 	return (
 		<ThemeWrapper themeName={THEME_NAMES.DARK}>

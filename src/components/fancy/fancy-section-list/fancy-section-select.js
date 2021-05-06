@@ -12,6 +12,7 @@ const FancySectionSelect = ({
 	sectionsConfig,
 	keepFieldsKeys,
 	getNew,
+	namespace,
 }) => {
 	const onChangeHandler = (newType) => {
 		const oldValue = value ?? (isFunc(getNew) ? getNew() : {});
@@ -40,6 +41,8 @@ const FancySectionSelect = ({
 			options={options}
 			value={type}
 			onChange={onChangeHandler}
+			namespace={namespace}
+			name={typePropName}
 		/>
 	);
 };

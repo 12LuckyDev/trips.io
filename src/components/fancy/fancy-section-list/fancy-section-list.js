@@ -19,6 +19,8 @@ const FancySectionList = ({
 	sectionsConfig,
 	keepFieldsKeys = ["id"],
 	arrayChangeHandler,
+	namespace,
+	labelText,
 	...panelProps
 }) => {
 	const onChangeHandler = (operation, args = {}) => {
@@ -46,7 +48,8 @@ const FancySectionList = ({
 			))}
 			{isArray(options, false) && isObject(sectionsConfig, false) ? (
 				<FancySectionSelect
-					labelText={"New section type"}
+					labelText={labelText ? labelText : namespace ?? "new-section-type"}
+					namespace={namespace}
 					options={optionsFilter(options, value, typePropName)}
 					sectionsConfig={sectionsConfig}
 					keepFieldsKeys={keepFieldsKeys}
@@ -58,7 +61,7 @@ const FancySectionList = ({
 				/>
 			) : (
 				<FancyButton
-					text="ADD"
+					text="add"
 					onClick={() =>
 						onChangeHandler(ARRAY_OPERATION.ADD, { newValue: getNew() })
 					}

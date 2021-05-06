@@ -4,8 +4,8 @@ import { IMAGE_FORM_TYPES } from "@consts";
 const imagesConfig = {
 	component: FancyImageSubform,
 	name: "images",
-	labelText: "Gallery",
 	valuePropName: "model",
+	passNamespace: false,
 	getDefault: () => ({
 		type: IMAGE_FORM_TYPES.SINGLE,
 		img: [],

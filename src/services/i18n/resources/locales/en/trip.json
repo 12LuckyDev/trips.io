@@ -1,5 +1,5 @@
 {
 	"title": "Trips title",
 	"text": "Trip description",
-	"sections": "New section type"
+	"daysAmount": "Days range length"
 }

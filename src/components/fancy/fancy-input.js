@@ -6,7 +6,7 @@ import {
 	StyledLabelText,
 	StyledTextarea,
 } from "@styled-components";
-import { useTranslation } from "react-i18next";
+import { useTranslatedLabel } from "@hooks";
 
 const FancyInput = ({
 	inputType,
@@ -15,13 +15,8 @@ const FancyInput = ({
 	namespace,
 	...restProps
 }) => {
-	const { t } = useTranslation();
+	const commonProps = useTranslatedLabel(name, namespace, { labelText });
 
-	const commonProps = {
-		name,
-		labelText: labelText ?? (namespace ? t(`${namespace}:${name}`) : null),
-	};
-	console.log(namespace, commonProps);
 	if (inputType === "textarea") {
 		return (
 			<CustomTextarea

@@ -14,6 +14,7 @@ import { FancyFormField, FancyLabel } from "@fancy-components";
 import { revokeUrisIfExist, fillImagesUrls } from "@utils";
 import SingleImageEditor from "./single-image-editor";
 import FancyImageInput from "./fancy-image-input";
+import { useTranslatedLabel } from "@hooks";
 
 const reduceImgToSingle = (img) => {
 	if (img.length > 0) {
@@ -65,7 +66,12 @@ const modelHandler = (model, value, name) => {
 	}
 };
 
-const FancyImageSubform = ({ model, onChange, name, labelText }) => {
+const FancyImageSubform = ({ model, onChange, name, namespace, labelText }) => {
+	const translatedLabelText = useTranslatedLabel(name, namespace, {
+		labelText,
+		returnNameToo: false,
+	});
+
 	const { type, img, width, galleryType, largest, side } = model;
 	const multiple = type === IMAGE_FORM_TYPES.GALLERY;
 
@@ -79,7 +85,7 @@ const FancyImageSubform = ({ model, onChange, name, labelText }) => {
 
 	return (
 		<Column>
-			{labelText && <FancyLabel labelText={labelText} />}
+			{translatedLabelText && <FancyLabel labelText={translatedLabelText} />}
 			<FancyFormField
 				type={FIELD_TYPES.SELECT}
 				options={IMAGE_FORM_OPTIONS}

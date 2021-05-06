@@ -15,7 +15,7 @@ const dayFormTypeChangeHandler = ({ newValue, newModel }) => ({
 });
 
 const DaySubform = ({ model, onChange }) => {
-	const { getFieldProps } = useSubform(model, onChange);
+	const { getFieldProps } = useSubform(model, onChange, { namespace: "trip" });
 	const { dayFormType, day, daysAmount } = model;
 
 	const dayLabel = `Day: ${day}${
@@ -37,7 +37,6 @@ const DaySubform = ({ model, onChange }) => {
 				<FancyFormField
 					{...getFieldProps("daysAmount", {
 						type: FIELD_TYPES.NUMBER,
-						labelText: "Days range length",
 					})}
 				/>
 			)}
@@ -49,6 +48,7 @@ const DaySubform = ({ model, onChange }) => {
 					options: DAY_INFO_OPTIONS,
 					sectionLabel: dayLabel,
 					sectionsConfig: daySectionsConfig,
+					passNamespace: false,
 				})}
 			/>
 		</>

@@ -9,6 +9,7 @@ const getFieldPropsHelper = (
 	model = {},
 	{ namespace } = {}
 ) => {
+	console.log(namespace);
 	const {
 		// COMMON
 		type,
@@ -18,6 +19,7 @@ const getFieldPropsHelper = (
 		modelChangeHandler,
 		getDefault,
 		namespace: fieldNamespace,
+		passNamespace = true,
 		// SECTIONS_LIST
 		component,
 		getNew,
@@ -35,7 +37,7 @@ const getFieldPropsHelper = (
 	let defaultProps = {
 		name,
 		type,
-		namespace: fieldNamespace || namespace,
+		namespace: fieldNamespace ?? (passNamespace ? namespace : null),
 		onChange: (newValue, propName) =>
 			onModelChange(
 				modelChangeHelper(model, {
@@ -50,6 +52,7 @@ const getFieldPropsHelper = (
 			? getDefault()
 			: defaultValueHelper(type),
 	};
+	console.log(defaultProps, namespace);
 
 	if (!!labelText) {
 		defaultProps.labelText = labelText;
