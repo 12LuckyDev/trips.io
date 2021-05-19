@@ -1,9 +1,9 @@
 import { FIELD_TYPES, ACCOMMODATION_MEALS_OPTIONS } from "@consts";
-import imagesConfig from "./common/images-config";
+import { imagesConfig, name, link, text } from "./common-config";
 
 export const accommodationConfig = [
-	{ name: "name", type: FIELD_TYPES.TEXT },
-	{ name: "link", type: FIELD_TYPES.TEXT },
+	name,
+	link,
 	{ name: "price", type: FIELD_TYPES.NUMBER },
 	imagesConfig,
 	{
@@ -11,11 +11,7 @@ export const accommodationConfig = [
 		type: FIELD_TYPES.SELECT,
 		options: ACCOMMODATION_MEALS_OPTIONS,
 	},
-	{
-		name: "text",
-		type: FIELD_TYPES.TEXT,
-		inputType: "textarea",
-	},
+	text,
 ];
 
 export default accommodationConfig;
